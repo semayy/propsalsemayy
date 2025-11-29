@@ -1,5 +1,5 @@
 import React from 'react';
-import { Target, Cpu, Search, Mail, Layout, BarChart2, Shield, Globe, Users, Clock, Database, CheckCircle, Lock, Calendar, Table, Linkedin, AlertTriangle, CheckSquare, ChevronRight, Zap, TrendingUp, Award, MessageSquare } from 'lucide-react';
+import { Target, Cpu, Search, Mail, Layout, BarChart2, Shield, Globe, Users, Clock, Database, CheckCircle, Lock, Calendar, Table, Linkedin, AlertTriangle, CheckSquare, ChevronRight, Zap, TrendingUp, Award, MessageSquare, Smartphone, ShoppingBag, UserCheck, Briefcase, Fingerprint, Lightbulb, Layers, Video, Bot, PenTool } from 'lucide-react';
 
 // --- UI COMPONENTS ---
 
@@ -9,7 +9,9 @@ const CanvasCard = ({ title, icon: Icon, children, className = "", variant = "de
     highlight: "bg-gradient-to-br from-white to-red-50/50 border-red-100 hover:border-red-200",
     success: "bg-gradient-to-br from-white to-emerald-50/50 border-emerald-100 hover:border-emerald-200",
     blue: "bg-gradient-to-br from-white to-blue-50/50 border-blue-100 hover:border-blue-200",
-    dark: "bg-slate-900 text-white border-slate-800"
+    dark: "bg-slate-900 text-white border-slate-800",
+    whatsapp: "bg-gradient-to-br from-white to-green-50/50 border-green-100 hover:border-green-200",
+    special: "bg-gradient-to-br from-slate-50 to-white border-slate-200 shadow-md"
   };
 
   const iconColors = {
@@ -17,7 +19,9 @@ const CanvasCard = ({ title, icon: Icon, children, className = "", variant = "de
     highlight: "text-red-700 bg-white shadow-sm",
     success: "text-emerald-600 bg-white shadow-sm",
     blue: "text-blue-600 bg-white shadow-sm",
-    dark: "text-red-500 bg-slate-800"
+    dark: "text-red-500 bg-slate-800",
+    whatsapp: "text-green-600 bg-white shadow-sm",
+    special: "text-slate-700 bg-slate-200"
   };
 
   return (
@@ -77,7 +81,6 @@ const ComparisonCard = ({ category, oldSys, newSys, oldDesc, newDesc }) => (
   </div>
 );
 
-// Yeni Grafik Bileşeni: Basit Bar Chart
 const SimpleBarChart = ({ label, value, max, color = "bg-red-500" }) => (
   <div className="mb-3">
     <div className="flex justify-between text-[10px] uppercase font-bold text-gray-500 mb-1">
@@ -90,7 +93,6 @@ const SimpleBarChart = ({ label, value, max, color = "bg-red-500" }) => (
   </div>
 );
 
-// Yeni SWOT Kutusu
 const SwotBox = ({ label, items, type }) => {
   const styles = {
     S: "bg-emerald-50 border-emerald-100 text-emerald-800",
@@ -113,6 +115,34 @@ const SwotBox = ({ label, items, type }) => {
     </div>
   );
 };
+
+const ProfileFeature = ({ icon: Icon, title, desc }) => (
+  <div className="flex flex-col gap-2 p-4 rounded-2xl bg-white border border-gray-100 hover:border-slate-300 transition-colors shadow-sm h-full">
+    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+      <Icon size={20} strokeWidth={2} />
+    </div>
+    <h4 className="font-bold text-slate-900 text-sm mt-1">{title}</h4>
+    <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+  </div>
+);
+
+// YENİ BİLEŞEN: Gelecek Projeler Kartı
+const FutureServiceCard = ({ icon: Icon, title, items, colorClass, bgClass }) => (
+  <div className={`p-4 rounded-2xl border ${bgClass} hover:shadow-md transition-all duration-300 h-full`}>
+    <div className={`w-10 h-10 rounded-xl ${colorClass} text-white flex items-center justify-center mb-3 shadow-sm`}>
+      <Icon size={20} />
+    </div>
+    <h4 className="font-bold text-slate-800 text-sm mb-2">{title}</h4>
+    <ul className="space-y-1.5">
+      {items.map((item, i) => (
+        <li key={i} className="text-[10px] font-medium text-slate-600 flex items-center gap-1.5">
+          <span className={`w-1 h-1 rounded-full ${colorClass}`}></span>
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const VegaTrailerCanvas = () => {
   return (
@@ -213,42 +243,52 @@ const VegaTrailerCanvas = () => {
             </div>
           </div>
 
-          {/* GLOBAL COMPETITOR GAP ANALYSIS (YENİ EKLENEN KISIM) */}
+          {/* GLOBAL COMPETITOR GAP ANALYSIS */}
           <CanvasCard title="Global Rekabet GAP Analizi" icon={Globe}>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="border-b border-gray-100 text-gray-400 font-bold uppercase tracking-wider text-[10px]">
                     <th className="pb-3 pl-2">Kriter</th>
-                    <th className="pb-3 text-gray-800">Global Rakipler (AB)</th>
+                    <th className="pb-3 text-gray-800 w-1/3">Global Rakipler (Benchmark)</th>
                     <th className="pb-3 text-red-400">Vega (Mevcut)</th>
                     <th className="pb-3 text-emerald-600">Vega (Hedef 2026)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 text-[11px]">
                   <tr className="group hover:bg-gray-50 transition-colors">
+                    <td className="py-3 pl-2 font-bold text-slate-700">Benchmark Web</td>
+                    <td className="py-3 text-gray-600 italic">
+                      <div>• Faymonville.com</div>
+                      <div>• Goldhofer.com</div>
+                      <div>• Nooteboom.com</div>
+                    </td>
+                    <td className="py-3 text-red-400 font-medium">Standart Site</td>
+                    <td className="py-3 text-emerald-600 font-bold">Global Standartta Arayüz</td>
+                  </tr>
+                  <tr className="group hover:bg-gray-50 transition-colors">
+                    <td className="py-3 pl-2 font-bold text-slate-700">Satış Modeli</td>
+                    <td className="py-3 text-gray-600">Stok Bulucu / Bayi Ağı</td>
+                    <td className="py-3 text-red-400 font-medium">Belirsiz / Manuel</td>
+                    <td className="py-3 text-emerald-600 font-bold">
+                      E-Katalog (Satış Yok)
+                      <div className="text-[9px] font-normal text-emerald-500">Doğrudan Teklif Odaklı</div>
+                    </td>
+                  </tr>
+                  <tr className="group hover:bg-gray-50 transition-colors">
                     <td className="py-3 pl-2 font-bold text-slate-700">Dijital Showroom</td>
-                    <td className="py-3 text-gray-600">360° Görünüm & Video</td>
+                    <td className="py-3 text-gray-600">Video & 360° Görünüm</td>
                     <td className="py-3 text-red-400 font-medium">Statik Resimler</td>
                     <td className="py-3 text-emerald-600 font-bold">Video Katalog</td>
                   </tr>
                   <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">Teklif Süreci</td>
-                    <td className="py-3 text-gray-600">Online Konfigüratör</td>
-                    <td className="py-3 text-red-400 font-medium">Manuel (Whatsapp/Mail)</td>
-                    <td className="py-3 text-emerald-600 font-bold">Hızlı Teklif Modülü</td>
-                  </tr>
-                  <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">SEO Varlığı</td>
-                    <td className="py-3 text-gray-600">İlk Sayfa Otoritesi</td>
-                    <td className="py-3 text-red-400 font-medium">Düşük Görünürlük</td>
-                    <td className="py-3 text-emerald-600 font-bold">AI & GEO Liderliği</td>
-                  </tr>
-                   <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">B2B Ağ (LinkedIn)</td>
-                    <td className="py-3 text-gray-600">Aktif Satış Kanalı</td>
-                    <td className="py-3 text-red-400 font-medium">Pasif/Bireysel</td>
-                    <td className="py-3 text-emerald-600 font-bold">Kurumsal Elçilik</td>
+                    <td className="py-3 pl-2 font-bold text-slate-700">Teklif & İletişim</td>
+                    <td className="py-3 text-gray-600">Konfigüratör + Chat</td>
+                    <td className="py-3 text-red-400 font-medium">Manuel (Kişisel WP)</td>
+                    <td className="py-3 text-emerald-600 font-bold">
+                      Hızlı Teklif + WP Business
+                      <div className="text-[9px] font-normal text-emerald-500">Ürün Uzmanıyla Anlık Chat & Meta Panel</div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -282,6 +322,21 @@ const VegaTrailerCanvas = () => {
 
         {/* --- KOLON 3: Teknik & Hedefler (Sağ) --- */}
         <div className="md:col-span-3 flex flex-col gap-5">
+
+          {/* YENİ EKLENEN KART: Meta & WhatsApp */}
+          <CanvasCard title="Meta & WhatsApp Entegrasyonu" icon={Smartphone} variant="whatsapp">
+            <div className="text-xs text-green-700 font-bold mb-2">KURUMSAL İLETİŞİM ALTYAPISI</div>
+             <BulletPoint text="Business API: Web sitesinde 'Hemen Teklif Al' butonu ile WhatsApp Business sohbeti." />
+             <BulletPoint text="Uzman Yönlendirme: Konuya göre (Lowbed/Damper) ilgili mühendise otomatik aktarım." />
+             <BulletPoint text="Meta Suite: Facebook, Instagram ve WP mesajlarının tek panelden yönetimi." />
+          </CanvasCard>
+
+          <CanvasCard title="E-Katalog Yapısı" icon={ShoppingBag} variant="default">
+             <div className="text-xs text-red-700 font-bold mb-2">SATIŞ DEĞİL, TEKLİF YÖNETİMİ</div>
+             <BulletPoint text="Filtreleme: Tonaj, Aks Sayısı ve Yük Tipi'ne göre akıllı ürün bulucu." />
+             <BulletPoint text="Teklif Sepeti: Müşteri birden fazla ürünü 'Teklif Listesine' ekler, tek seferde fiyat ister." />
+             <BulletPoint text="PDF İndir: Her ürün sayfası için otomatik oluşturulan teknik föy." />
+          </CanvasCard>
           
           <CanvasCard title="Dijital İhracat Stratejisi" icon={Linkedin} className="bg-[#0077b5]/5 border-[#0077b5]/20">
              <div className="text-xs text-[#0077b5] font-bold mb-2">LINKEDIN & SOSYAL AĞ</div>
@@ -322,8 +377,110 @@ const VegaTrailerCanvas = () => {
 
         </div>
 
+        {/* --- NEDEN SEMANUR AYYILDIZ? --- */}
+        <div className="md:col-span-12 mt-4 mb-2">
+           <div className="bg-slate-100 p-6 rounded-[2rem] border border-slate-200">
+             <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-slate-900 rounded-lg text-white">
+                  <UserCheck size={24} />
+                </div>
+                <div>
+                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Proje Liderliği & Güven Protokolü</h3>
+                   <div className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Visual Communication & Digital Transformation Specialist</div>
+                </div>
+             </div>
+             
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <ProfileFeature 
+                  icon={Briefcase}
+                  title="Bütüncül Uzmanlık"
+                  desc="Sadece bir web sitesi değil, yaşayan bir dijital ekosistem kurarım. Tasarım, Yazılım ve Strateji süreçlerini tek elden, entegre yönetirim."
+                />
+                <ProfileFeature 
+                  icon={Fingerprint}
+                  title="Bağımsız Güvence"
+                  desc="Ajans bağımlılığı yaratmam. Domain, Hosting ve Google hesapları %100 sizin adınıza, sizin kartınızla açılır. Kontrol daima sizdedir."
+                />
+                <ProfileFeature 
+                  icon={Lightbulb}
+                  title="Stratejik Yaklaşım"
+                  desc="'Güzel görünen' değil, 'Satan' işler üretirim. Vega Trailer'ın sadece dijital yüzünü değil, B2B satış kabiliyetini de dönüştürürüm."
+                />
+                <ProfileFeature 
+                  icon={CheckCircle}
+                  title="Agile Yönetim"
+                  desc="Sürpriz yok. Haftalık raporlar, şeffaf takvim ve net çıktılarla çalışırım. Analiz -> Uygulama -> Test -> Teslim döngüsünü uygularım."
+                />
+             </div>
+           </div>
+        </div>
+
+        {/* --- YENİ BÖLÜM: DEVAM PROJELERİ (FUTURE OPPORTUNITIES) --- */}
+        <div className="md:col-span-12 mt-2 mb-6">
+           <div className="p-1 rounded-[2.2rem] bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200 shadow-xl">
+              <div className="bg-white p-6 rounded-[2rem] relative overflow-hidden">
+                 
+                 {/* Header */}
+                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 relative z-10">
+                   <div className="flex items-center gap-3">
+                      <div className="p-2.5 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-xl text-white shadow-lg">
+                        <Layers size={24} />
+                      </div>
+                      <div>
+                         <h3 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-blue-600">Devam Projeleri & Sürdürülebilir İş Birliği</h3>
+                         <p className="text-xs text-slate-500 font-medium mt-0.5">Vega Trailer için dijital dönüşümün sonraki adımları</p>
+                      </div>
+                   </div>
+                   <div className="px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-[10px] font-bold text-slate-400 tracking-wider uppercase">
+                      Next Steps
+                   </div>
+                 </div>
+
+                 {/* Grid Content */}
+                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
+                    
+                    <FutureServiceCard 
+                       icon={Layout} 
+                       title="Dijital Medya Yönetimi" 
+                       items={["Sosyal Medya Yönetimi", "Topluluk (Community) Yönetimi", "B2B İçerik Takvimi"]}
+                       colorClass="bg-purple-500"
+                       bgClass="border-purple-100 bg-purple-50/50"
+                    />
+
+                    <FutureServiceCard 
+                       icon={Video} 
+                       title="Görüntüleme & Tasarım" 
+                       items={["Fabrika/Ürün Çekimleri", "Drone Video Prodüksiyon", "Fuar/Katalog Tasarımı"]}
+                       colorClass="bg-pink-500"
+                       bgClass="border-pink-100 bg-pink-50/50"
+                    />
+
+                    <FutureServiceCard 
+                       icon={Bot} 
+                       title="Yapay Zeka İçerikleri" 
+                       items={["AI Tabanlı Blog Yazarlığı", "Otomatik Müşteri Yanıtları", "Veri Analizi & Raporlama"]}
+                       colorClass="bg-blue-500"
+                       bgClass="border-blue-100 bg-blue-50/50"
+                    />
+
+                    <FutureServiceCard 
+                       icon={PenTool} 
+                       title="Görsel İletişim & Danışmanlık" 
+                       items={["Marka Kimliği (Rebranding)", "Proje Danışmanlığı", "Dijital Kriz Yönetimi"]}
+                       colorClass="bg-orange-500"
+                       bgClass="border-orange-100 bg-orange-50/50"
+                    />
+
+                 </div>
+
+                 {/* Decorative BG */}
+                 <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-tl from-blue-100/50 to-purple-100/50 rounded-full blur-3xl -z-0"></div>
+              </div>
+           </div>
+        </div>
+
         {/* --- FOOTER --- */}
-        <div className="md:col-span-12 mt-4">
+        <div className="md:col-span-12">
            <div className="bg-slate-900 rounded-[2rem] p-8 md:p-10 relative overflow-hidden group cursor-pointer shadow-2xl shadow-slate-900/40 hover:scale-[1.01] transition-transform">
               <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
                  <div>
