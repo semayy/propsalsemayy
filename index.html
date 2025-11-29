@@ -1,511 +1,1916 @@
-import React from 'react';
-import { Target, Cpu, Search, Mail, Layout, BarChart2, Shield, Globe, Users, Clock, Database, CheckCircle, Lock, Calendar, Table, Linkedin, AlertTriangle, CheckSquare, ChevronRight, Zap, TrendingUp, Award, MessageSquare, Smartphone, ShoppingBag, UserCheck, Briefcase, Fingerprint, Lightbulb, Layers, Video, Bot, PenTool } from 'lucide-react';
+<!doctype html>
+<html lang="tr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vega Trailer - 2026 Stratejik Plan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-// --- UI COMPONENTS ---
+        body {
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-const CanvasCard = ({ title, icon: Icon, children, className = "", variant = "default" }) => {
-  const variants = {
-    default: "bg-white border-gray-100 hover:border-gray-200",
-    highlight: "bg-gradient-to-br from-white to-red-50/50 border-red-100 hover:border-red-200",
-    success: "bg-gradient-to-br from-white to-emerald-50/50 border-emerald-100 hover:border-emerald-200",
-    blue: "bg-gradient-to-br from-white to-blue-50/50 border-blue-100 hover:border-blue-200",
-    dark: "bg-slate-900 text-white border-slate-800",
-    whatsapp: "bg-gradient-to-br from-white to-green-50/50 border-green-100 hover:border-green-200",
-    special: "bg-gradient-to-br from-slate-50 to-white border-slate-200 shadow-md"
-  };
+        .container {
+            width: 100%;
+            min-height: 100%;
+        }
 
-  const iconColors = {
-    default: "text-red-600 bg-red-50",
-    highlight: "text-red-700 bg-white shadow-sm",
-    success: "text-emerald-600 bg-white shadow-sm",
-    blue: "text-blue-600 bg-white shadow-sm",
-    dark: "text-red-500 bg-slate-800",
-    whatsapp: "text-green-600 bg-white shadow-sm",
-    special: "text-slate-700 bg-slate-200"
-  };
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 120px 40px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0f 100%);
+            overflow: hidden;
+        }
 
-  return (
-    <div className={`
-      relative p-5 rounded-3xl border shadow-sm transition-all duration-300 
-      hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 
-      flex flex-col h-full group
-      ${variants[variant] || variants.default} 
-      ${className}
-    `}>
-      <div className="flex items-center gap-3 mb-4">
-        <div className={`p-2 rounded-xl ${iconColors[variant] || iconColors.default} transition-colors`}>
-          <Icon className="w-5 h-5" strokeWidth={2.5} />
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(196, 30, 58, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(196, 30, 58, 0.1);
+            border: 2px solid #c41e3a;
+            color: #c41e3a;
+            padding: 12px 32px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .company-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #c41e3a;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, #c41e3a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            font-weight: 300;
+            color: #999;
+            margin-bottom: 48px;
+            letter-spacing: 1px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(196, 30, 58, 0.2);
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(196, 30, 58, 0.5);
+            box-shadow: 0 16px 32px rgba(196, 30, 58, 0.2);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: #c41e3a;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 64px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #ffffff;
+            letter-spacing: -2px;
+        }
+
+        .section-title span {
+            color: #c41e3a;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #666;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Vision Card - Premium Design */
+        .vision-card {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            padding: 64px;
+            margin-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #c41e3a 0%, transparent 100%);
+        }
+
+        .vision-quote {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 48px;
+            line-height: 1.4;
+            letter-spacing: -1px;
+            font-style: italic;
+        }
+
+        .vision-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .vision-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .vision-point:hover {
+            background: rgba(196, 30, 58, 0.05);
+            border-color: rgba(196, 30, 58, 0.3);
+            transform: translateX(8px);
+        }
+
+        .vision-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .vision-text {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Score Comparison - Infographic Style */
+        .score-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 48px;
+            margin: 64px 0;
+        }
+
+        .score-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .score-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(196, 30, 58, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(196, 30, 58, 0.2);
+        }
+
+        .score-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c41e3a 0%, transparent 100%);
+        }
+
+        .score-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .score-visual {
+            margin-bottom: 32px;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .score-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 12;
+        }
+
+        .score-circle-fill {
+            fill: none;
+            stroke: #c41e3a;
+            stroke-width: 12;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 2s ease;
+        }
+
+        .score-circle.bad .score-circle-fill {
+            stroke: #ef4444;
+        }
+
+        .score-circle.good .score-circle-fill {
+            stroke: #10b981;
+        }
+
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 56px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -2px;
+        }
+
+        .score-description {
+            text-align: center;
+            font-size: 16px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* SWOT Analysis - Premium Grid */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: rgba(196, 30, 58, 0.2);
+            margin: 64px 0;
+        }
+
+        .swot-card {
+            background: #0f0f0f;
+            padding: 48px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .swot-card:hover {
+            background: #151515;
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .swot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .swot-card.strengths::before {
+            background: #10b981;
+        }
+
+        .swot-card.weaknesses::before {
+            background: #ef4444;
+        }
+
+        .swot-card.opportunities::before {
+            background: #f59e0b;
+        }
+
+        .swot-card.threats::before {
+            background: #8b5cf6;
+        }
+
+        .swot-header {
+            margin-bottom: 32px;
+        }
+
+        .swot-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            border: 2px solid;
+        }
+
+        .swot-card.strengths .swot-icon {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .swot-card.weaknesses .swot-icon {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .swot-card.opportunities .swot-icon {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        .swot-card.threats .swot-icon {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: #8b5cf6;
+            color: #8b5cf6;
+        }
+
+        .swot-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .swot-subtitle {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .swot-list {
+            list-style: none;
+        }
+
+        .swot-list li {
+            padding: 16px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 15px;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .swot-list li:last-child {
+            border-bottom: none;
+        }
+
+        .swot-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 2px;
+            background: #c41e3a;
+        }
+
+        /* Comparison Table - Modern Design */
+        .comparison-table {
+            margin: 64px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+            align-items: center;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-card:hover {
+            transform: translateX(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .comparison-card.old {
+            border-left: 4px solid #ef4444;
+        }
+
+        .comparison-card.old:hover {
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .comparison-card.new {
+            border-left: 4px solid #10b981;
+        }
+
+        .comparison-card.new:hover {
+            transform: translateX(8px);
+            border-left-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .comparison-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .comparison-card.old .comparison-label {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .comparison-card.new .comparison-label {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .comparison-subtitle {
+            font-size: 14px;
+            color: #c41e3a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .comparison-description {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .comparison-arrow {
+            font-size: 48px;
+            color: #c41e3a;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* Timeline - Premium Roadmap */
+        .timeline {
+            position: relative;
+            margin: 64px 0;
+            padding: 80px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c41e3a 0%, #c41e3a 50%, rgba(196, 30, 58, 0.3) 100%);
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 64px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-node {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
+            border: 6px solid #0a0a0a;
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-node {
+            transform: translateX(-50%) scale(1.15);
+            box-shadow: 0 0 0 8px rgba(196, 30, 58, 0.4), 0 20px 40px rgba(196, 30, 58, 0.3);
+        }
+
+        .timeline-node-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 4px;
+            letter-spacing: -2px;
+        }
+
+        .timeline-node-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-connector {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(180deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
+            z-index: 5;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(196, 30, 58, 0.2);
+            padding: 48px 32px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c41e3a 0%, #8a1528 100%);
+        }
+
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .timeline-item:hover .timeline-card {
+            border-color: rgba(196, 30, 58, 0.5);
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+        }
+
+        .timeline-item:hover .timeline-card::after {
+            opacity: 1;
+        }
+
+        .timeline-week {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.15);
+            border: 1px solid rgba(196, 30, 58, 0.4);
+            color: #c41e3a;
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-description {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-deliverables {
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-deliverable-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-deliverable-list {
+            list-style: none;
+        }
+
+        .timeline-deliverable-list li {
+            font-size: 14px;
+            color: #aaa;
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-deliverable-list li:hover {
+            color: #ffffff;
+            padding-left: 32px;
+        }
+
+        .timeline-deliverable-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: rgba(196, 30, 58, 0.2);
+            border: 1px solid rgba(196, 30, 58, 0.4);
+            color: #c41e3a;
+            font-size: 11px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-stat {
+            text-align: center;
+        }
+
+        .timeline-stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: #c41e3a;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .timeline-stat-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Features - Icon Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 64px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 56px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(196, 30, 58, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .feature-icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.2) 0%, rgba(196, 30, 58, 0.05) 100%);
+            border: 2px solid rgba(196, 30, 58, 0.3);
+            color: #c41e3a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-description {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            background: rgba(196, 30, 58, 0.03);
+            border-top: 1px solid rgba(196, 30, 58, 0.2);
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
+            padding: 100px 40px;
+            margin: 100px 0;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .leadership-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 48px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leadership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, #c41e3a 0%, transparent 100%);
+            transition: height 0.4s ease;
+        }
+
+        .leadership-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(196, 30, 58, 0.5);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(196, 30, 58, 0.15);
+        }
+
+        .leadership-card:hover::before {
+            height: 100%;
+        }
+
+        .leadership-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: rgba(196, 30, 58, 0.2);
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .leadership-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .leadership-text {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            padding: 64px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(196, 30, 58, 0.2);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pm-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            padding: 24px 40px;
+            margin-bottom: 32px;
+        }
+
+        .pm-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .pm-info {
+            text-align: left;
+        }
+
+        .pm-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .pm-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-items {
+                grid-template-columns: 1fr;
+                gap: 80px;
+                padding-left: 80px;
+            }
+
+            .timeline-line {
+                left: 40px;
+                transform: none;
+                width: 4px;
+                height: 100%;
+                top: 0;
+                background: linear-gradient(180deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
+            }
+
+            .timeline-item {
+                position: relative;
+            }
+
+            .timeline-node {
+                top: 0;
+                left: -80px;
+                transform: none;
+                width: 80px;
+                height: 80px;
+            }
+
+            .timeline-item:hover .timeline-node {
+                transform: scale(1.1);
+            }
+
+            .timeline-connector {
+                top: 40px;
+                left: -40px;
+                transform: none;
+                width: 40px;
+                height: 2px;
+                background: linear-gradient(90deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 24px;
+            }
+
+            .stat-value {
+                font-size: 36px;
+            }
+
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .comparison-arrow {
+                transform: rotate(90deg);
+                font-size: 32px;
+            }
+
+            .hero {
+                padding: 64px 20px;
+            }
+
+            .section {
+                padding: 48px 20px;
+            }
+
+            .vision-card {
+                padding: 28px 20px;
+            }
+
+            .vision-quote {
+                font-size: 20px;
+                margin-bottom: 32px;
+            }
+
+            .vision-points {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .vision-point {
+                padding: 20px;
+            }
+
+            .score-comparison {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .score-card {
+                padding: 32px 20px;
+            }
+
+            .swot-card {
+                padding: 32px 20px;
+            }
+
+            .comparison-card {
+                padding: 24px 20px;
+            }
+
+            .comparison-title {
+                font-size: 20px;
+            }
+
+            .feature-card {
+                padding: 36px 24px;
+            }
+
+            .feature-icon {
+                width: 72px;
+                height: 72px;
+                font-size: 36px;
+            }
+
+            .leadership {
+                padding: 48px 20px;
+            }
+
+            .leadership-card {
+                padding: 28px 20px;
+            }
+
+            .leadership-number {
+                font-size: 56px;
+            }
+
+            .timeline-items {
+                padding-left: 60px;
+                gap: 64px;
+            }
+
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-node {
+                left: -60px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .timeline-node-number {
+                font-size: 32px;
+            }
+
+            .timeline-node-label {
+                font-size: 8px;
+            }
+
+            .timeline-connector {
+                top: 30px;
+                left: -30px;
+                width: 30px;
+            }
+
+            .timeline-card {
+                padding: 32px 20px 24px;
+            }
+
+            .timeline-title {
+                font-size: 22px;
+            }
+
+            .timeline-description {
+                font-size: 14px;
+            }
+
+            .pm-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 24px;
+            }
+
+            .pm-info {
+                text-align: center;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container"><!-- Hero Section -->
+   <section class="hero">
+    <div class="hero-content">
+     <div class="company-badge"><span id="company-name">VEGA TRAILER</span>
+     </div>
+     <h1 id="project-title">Kurumsal Dönüşüm &amp; Marka Entegrasyonu</h1>
+     <div class="subtitle">
+      Stratejik Dönüşüm Planı <span id="year">2026</span>
+     </div>
+     <div class="hero-stats">
+      <div class="stat-card">
+       <div class="stat-value">
+        6
+       </div>
+       <div class="stat-label">
+        Hafta Sprint
+       </div>
+      </div>
+      <div class="stat-card">
+       <div class="stat-value">
+        92%
+       </div>
+       <div class="stat-label">
+        Hedef Skor
+       </div>
+      </div>
+      <div class="stat-card">
+       <div class="stat-value">
+        40+
+       </div>
+       <div class="stat-label">
+        Yıl Tecrübe
+       </div>
+      </div>
+      <div class="stat-card">
+       <div class="stat-value">
+        100%
+       </div>
+       <div class="stat-label">
+        Marka Uyumu
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Vision Section -->
+   <section class="section">
+    <div class="vision-card">
+     <div class="vision-quote" id="vision-quote">
+      "40 yıllık endüstriyel mirası, modern teknolojinin diliyle dünyaya anlatmak."
+     </div>
+     <div class="vision-points">
+      <div class="vision-point">
+       <div class="vision-icon">
+        G
+       </div>
+       <div class="vision-text">
+        Global Güven İnşası: Avrupa pazarında 'Premium Partner' algısını yerleştirmek
+       </div>
+      </div>
+      <div class="vision-point">
+       <div class="vision-icon">
+        S
+       </div>
+       <div class="vision-text">
+        Sürdürülebilir İmaj: Zamandan bağımsız, tutarlı bir kurumsal kimlik
+       </div>
+      </div>
+      <div class="vision-point">
+       <div class="vision-icon">
+        T
+       </div>
+       <div class="vision-text">
+        Tek Seslilik: Web sitesinden e-posta imzasına kadar %100 uyumlu hitabet
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Digital Health Score -->
+   <section class="section">
+    <div class="section-header">
+     <h2 class="section-title">Dijital <span>Sağlık Skoru</span></h2>
+     <p class="section-subtitle">Google Core Web Vitals &amp; SEO Performance Analysis</p>
+    </div>
+    <div class="score-comparison">
+     <div class="score-card">
+      <div class="score-label">
+       Mevcut Durum
+      </div>
+      <div class="score-visual">
+       <div class="score-circle bad">
+        <svg viewbox="0 0 200 200"><circle class="score-circle-bg" cx="100" cy="100" r="90"></circle> <circle class="score-circle-fill" cx="100" cy="100" r="90" stroke-dasharray="565.48" stroke-dashoffset="367.56"></circle>
+        </svg>
+        <div class="score-value">
+         35%
         </div>
-        <h3 className={`font-bold uppercase text-xs tracking-widest ${variant === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-          {title}
-        </h3>
+       </div>
       </div>
-      <div className={`text-sm leading-relaxed flex-grow space-y-3 ${variant === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-        {children}
+      <div class="score-description">
+       Düşük performans ve SEO skoru<br>
+       Yavaş yüklenme, mobil uyumsuzluk
       </div>
-    </div>
-  );
-};
-
-const BulletPoint = ({ text, highlight = false }) => (
-  <div className="flex items-start gap-3 group/item">
-    <div className={`
-      w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 transition-all duration-300
-      ${highlight ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]' : 'bg-red-500 group-hover/item:scale-125'}
-    `}></div>
-    <span className={`text-xs leading-relaxed ${highlight ? 'font-semibold text-gray-800' : 'text-gray-600'}`}>{text}</span>
-  </div>
-);
-
-const ComparisonCard = ({ category, oldSys, newSys, oldDesc, newDesc }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-    <div className="bg-slate-50 p-4 border-b md:border-b-0 md:border-r border-gray-100 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-1 h-full bg-gray-200"></div>
-      <div className="flex items-center gap-2 mb-2">
-        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-200 text-gray-600 uppercase tracking-wide">Eski</span>
-        <h4 className="font-bold text-gray-700 text-xs">{category}</h4>
+     </div>
+     <div class="score-card">
+      <div class="score-label">
+       Hedeflenen (6 Hafta)
       </div>
-      <div className="text-gray-900 font-bold text-sm mb-1 line-through decoration-red-400 decoration-2 opacity-70">{oldSys}</div>
-      <p className="text-[10px] text-gray-500 leading-snug">{oldDesc}</p>
-    </div>
-    <div className="bg-white p-4 relative overflow-hidden group">
-      <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.4)]"></div>
-      <div className="flex items-center gap-2 mb-2">
-         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 uppercase tracking-wide flex items-center gap-1">
-           <Zap size={10} fill="currentColor" /> Yeni
-         </span>
+      <div class="score-visual">
+       <div class="score-circle good">
+        <svg viewbox="0 0 200 200"><circle class="score-circle-bg" cx="100" cy="100" r="90"></circle> <circle class="score-circle-fill" cx="100" cy="100" r="90" stroke-dasharray="565.48" stroke-dashoffset="45.24"></circle>
+        </svg>
+        <div class="score-value">
+         92%
+        </div>
+       </div>
       </div>
-      <div className="text-gray-900 font-bold text-sm mb-1">{newSys}</div>
-      <p className="text-[10px] text-emerald-900/70 leading-snug">{newDesc}</p>
-    </div>
-  </div>
-);
-
-const SimpleBarChart = ({ label, value, max, color = "bg-red-500" }) => (
-  <div className="mb-3">
-    <div className="flex justify-between text-[10px] uppercase font-bold text-gray-500 mb-1">
-      <span>{label}</span>
-      <span>{value}%</span>
-    </div>
-    <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-      <div className={`h-full rounded-full ${color} transition-all duration-1000`} style={{ width: `${(value / max) * 100}%` }}></div>
-    </div>
-  </div>
-);
-
-const SwotBox = ({ label, items, type }) => {
-  const styles = {
-    S: "bg-emerald-50 border-emerald-100 text-emerald-800",
-    W: "bg-red-50 border-red-100 text-red-800",
-    O: "bg-blue-50 border-blue-100 text-blue-800",
-    T: "bg-amber-50 border-amber-100 text-amber-800"
-  };
-  return (
-    <div className={`p-3 rounded-xl border ${styles[type]} h-full`}>
-      <div className="font-black text-xs mb-2 flex items-center gap-1 opacity-80">
-        <span className="text-base">{type}</span> {label}
+      <div class="score-description">
+       Optimum performans ve görünürlük<br>
+       Hızlı, SEO optimized, mobile-first
       </div>
-      <ul className="space-y-1">
-        {items.map((item, i) => (
-          <li key={i} className="text-[10px] font-medium leading-tight flex items-start gap-1">
-            <span className="mt-0.5">•</span> {item}
-          </li>
-        ))}
+     </div>
+    </div>
+   </section><!-- SWOT Analysis -->
+   <section class="section">
+    <div class="section-header">
+     <h2 class="section-title">Dijital <span>SWOT</span> Analizi</h2>
+     <p class="section-subtitle">Stratejik Durum Değerlendirmesi</p>
+    </div>
+    <div class="swot-grid">
+     <div class="swot-card strengths">
+      <div class="swot-header">
+       <div class="swot-icon">
+        S
+       </div>
+       <div class="swot-title">
+        Güçlü Yönler
+       </div>
+       <div class="swot-subtitle">
+        Strengths
+       </div>
+      </div>
+      <ul class="swot-list">
+       <li>40+ Yıllık Üretim Tecrübesi</li>
+       <li>VDI Sertifikalı Ürün Gamı</li>
+       <li>Güçlü İhracat Kapasitesi</li>
+       <li>Yerleşik Fiziksel Marka Bilinirliği</li>
       </ul>
-    </div>
-  );
-};
-
-const ProfileFeature = ({ icon: Icon, title, desc }) => (
-  <div className="flex flex-col gap-2 p-4 rounded-2xl bg-white border border-gray-100 hover:border-slate-300 transition-colors shadow-sm h-full">
-    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
-      <Icon size={20} strokeWidth={2} />
-    </div>
-    <h4 className="font-bold text-slate-900 text-sm mt-1">{title}</h4>
-    <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
-  </div>
-);
-
-// YENİ BİLEŞEN: Gelecek Projeler Kartı
-const FutureServiceCard = ({ icon: Icon, title, items, colorClass, bgClass }) => (
-  <div className={`p-4 rounded-2xl border ${bgClass} hover:shadow-md transition-all duration-300 h-full`}>
-    <div className={`w-10 h-10 rounded-xl ${colorClass} text-white flex items-center justify-center mb-3 shadow-sm`}>
-      <Icon size={20} />
-    </div>
-    <h4 className="font-bold text-slate-800 text-sm mb-2">{title}</h4>
-    <ul className="space-y-1.5">
-      {items.map((item, i) => (
-        <li key={i} className="text-[10px] font-medium text-slate-600 flex items-center gap-1.5">
-          <span className={`w-1 h-1 rounded-full ${colorClass}`}></span>
-          {item}
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-const VegaTrailerCanvas = () => {
-  return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans p-4 md:p-8 selection:bg-red-100 selection:text-red-900">
-      
-      {/* HEADER */}
-      <div className="max-w-7xl mx-auto mb-8">
-        <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
-          <div className="flex items-center gap-6 z-10">
-            <div className="w-16 h-16 bg-red-700 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-700/30">
-              <span className="font-black text-2xl tracking-tighter">V</span>
-            </div>
-            <div>
-              <h1 className="text-3xl font-black text-slate-900 tracking-tight">VEGA TRAILER</h1>
-              <div className="flex items-center gap-2 mt-1 text-slate-500 font-medium">
-                <span>Kurumsal Dönüşüm & Marka Entegrasyonu</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                <span className="text-red-600 font-semibold">2026 Stratejik Planı</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 bg-slate-50 px-5 py-3 rounded-2xl border border-slate-100 z-10">
-            <div className="text-right">
-              <div className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Proje Yöneticisi</div>
-              <div className="font-bold text-slate-800 text-lg">Semanur Ayyıldız</div>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-600 to-orange-500 flex items-center justify-center text-white font-bold shadow-md">SA</div>
-          </div>
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0"></div>
-        </div>
+     </div>
+     <div class="swot-card weaknesses">
+      <div class="swot-header">
+       <div class="swot-icon">
+        W
+       </div>
+       <div class="swot-title">
+        Zayıf Yönler
+       </div>
+       <div class="swot-subtitle">
+        Weaknesses
+       </div>
       </div>
-
-      {/* MAIN GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-auto">
-
-        {/* --- KOLON 1: Vizyon & Dil (Sol) --- */}
-        <div className="md:col-span-3 flex flex-col gap-5">
-          <CanvasCard title="Stratejik Vizyon" icon={Target} variant="highlight">
-            <p className="font-medium text-slate-900 italic border-l-2 border-red-500 pl-3 mb-3">
-              "40 yıllık endüstriyel mirası, modern teknolojinin diliyle dünyaya anlatmak."
-            </p>
-            <BulletPoint text="Global Güven İnşası: Avrupa pazarında 'Premium Partner' algısını yerleştirmek." />
-            <BulletPoint text="Sürdürülebilir İmaj: Zamandan bağımsız, tutarlı bir kurumsal kimlik." />
-          </CanvasCard>
-
-          <CanvasCard title="Kurumsal Dil & Bütünlük" icon={MessageSquare} variant="blue">
-             <div className="text-xs text-gray-500 mb-2 font-medium">TONE OF VOICE (MARKA SESİ)</div>
-             <BulletPoint text="Tek Seslilik: Web sitesinden e-posta imzasına kadar %100 uyumlu hitabet." />
-             <BulletPoint text="Terminoloji Birliği: 7 dildeki teknik çevirilerin (Lowbed, Tiefbett vb.) standardizasyonu." />
-             <BulletPoint text="Profesyonel Nezaket: Müşteri yazışmalarında kullanılacak standart şablonlar." />
-          </CanvasCard>
-
-           <CanvasCard title="Dijital Sağlık Skoru" icon={TrendingUp}>
-             <div className="mt-2">
-               <SimpleBarChart label="Mevcut Durum" value={35} max={100} color="bg-gray-400" />
-               <SimpleBarChart label="Hedeflenen (6 Hafta)" value={92} max={100} color="bg-emerald-500" />
-               <p className="text-[10px] text-gray-400 mt-2 italic text-center">Google Core Web Vitals & SEO Skoru</p>
-             </div>
-          </CanvasCard>
-        </div>
-
-        {/* --- KOLON 2: Ana İçerik & Analiz (Orta) --- */}
-        <div className="md:col-span-6 flex flex-col gap-5">
-          
-          {/* Mülkiyet Kartı */}
-          <CanvasCard title="Tam Mülkiyet Garantisi" icon={Lock} variant="success" className="bg-gradient-to-r from-emerald-50 to-white">
-             <div className="flex flex-col md:flex-row gap-4 items-center">
-                <div className="flex-1">
-                   <p className="text-sm font-medium text-emerald-900 mb-3">
-                     Semanur Ayyıldız sistemi kurar, anahtarı müşteriye teslim eder. Bağlayıcılık yoktur, tam özgürlük vardır.
-                   </p>
-                   <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-white p-2 rounded-lg border border-emerald-100 shadow-sm">
-                         <span className="text-[10px] font-bold text-emerald-600 uppercase block">Reseller Hesabı</span>
-                         <span className="text-xs font-bold text-slate-700">Vega Trailer Adına</span>
-                      </div>
-                      <div className="bg-white p-2 rounded-lg border border-emerald-100 shadow-sm">
-                         <span className="text-[10px] font-bold text-emerald-600 uppercase block">Yönetici Yetkisi</span>
-                         <span className="text-xs font-bold text-slate-700">Firma Sahibinde</span>
-                      </div>
-                   </div>
-                </div>
-                <Shield className="w-12 h-12 text-emerald-200 hidden md:block" />
-             </div>
-          </CanvasCard>
-
-          {/* SWOT ANALİZİ */}
-          <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm">
-            <div className="flex items-center gap-2 mb-4 border-b border-gray-100 pb-3">
-              <BarChart2 className="w-5 h-5 text-indigo-600" />
-              <h3 className="font-bold text-gray-800 uppercase text-xs tracking-widest">Dijital SWOT Analizi</h3>
-            </div>
-            <div className="grid grid-cols-2 gap-3 h-64">
-              <SwotBox type="S" label="GÜÇLÜ YÖNLER (Strengths)" items={["40+ Yıllık Üretim Tecrübesi", "VDI Sertifikalı Ürün Gamı", "Güçlü İhracat Kapasitesi", "Yerleşik Fiziksel Marka Bilinirliği"]} />
-              <SwotBox type="W" label="ZAYIF YÖNLER (Weaknesses)" items={["Dağınık Dijital Varlıklar", "Eski Teknoloji Web Sitesi", "Standartlaşmamış Kurumsal İletişim", "Pasif Sosyal Medya Kullanımı"]} />
-              <SwotBox type="O" label="FIRSATLAR (Opportunities)" items={["LinkedIn Üzerinden B2B Satış", "Yapay Zeka Aramalarında Öne Çıkma", "Gelişmekte Olan Pazarlar (Afrika/Asya)", "Online Katalog ile Hızlı Teklif"]} />
-              <SwotBox type="T" label="TEHDİTLER (Threats)" items={["Rakiplerin Dijital Agresifliği", "Siber Güvenlik / Spam Riskleri", "Veri Kaybı (Yedekleme Eksikliği)", "Global Ekonomik Durgunluk"]} />
-            </div>
-          </div>
-
-          {/* GLOBAL COMPETITOR GAP ANALYSIS */}
-          <CanvasCard title="Global Rekabet GAP Analizi" icon={Globe}>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="border-b border-gray-100 text-gray-400 font-bold uppercase tracking-wider text-[10px]">
-                    <th className="pb-3 pl-2">Kriter</th>
-                    <th className="pb-3 text-gray-800 w-1/3">Global Rakipler (Benchmark)</th>
-                    <th className="pb-3 text-red-400">Vega (Mevcut)</th>
-                    <th className="pb-3 text-emerald-600">Vega (Hedef 2026)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50 text-[11px]">
-                  <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">Benchmark Web</td>
-                    <td className="py-3 text-gray-600 italic">
-                      <div>• Faymonville.com</div>
-                      <div>• Goldhofer.com</div>
-                      <div>• Nooteboom.com</div>
-                    </td>
-                    <td className="py-3 text-red-400 font-medium">Standart Site</td>
-                    <td className="py-3 text-emerald-600 font-bold">Global Standartta Arayüz</td>
-                  </tr>
-                  <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">Satış Modeli</td>
-                    <td className="py-3 text-gray-600">Stok Bulucu / Bayi Ağı</td>
-                    <td className="py-3 text-red-400 font-medium">Belirsiz / Manuel</td>
-                    <td className="py-3 text-emerald-600 font-bold">
-                      E-Katalog (Satış Yok)
-                      <div className="text-[9px] font-normal text-emerald-500">Doğrudan Teklif Odaklı</div>
-                    </td>
-                  </tr>
-                  <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">Dijital Showroom</td>
-                    <td className="py-3 text-gray-600">Video & 360° Görünüm</td>
-                    <td className="py-3 text-red-400 font-medium">Statik Resimler</td>
-                    <td className="py-3 text-emerald-600 font-bold">Video Katalog</td>
-                  </tr>
-                  <tr className="group hover:bg-gray-50 transition-colors">
-                    <td className="py-3 pl-2 font-bold text-slate-700">Teklif & İletişim</td>
-                    <td className="py-3 text-gray-600">Konfigüratör + Chat</td>
-                    <td className="py-3 text-red-400 font-medium">Manuel (Kişisel WP)</td>
-                    <td className="py-3 text-emerald-600 font-bold">
-                      Hızlı Teklif + WP Business
-                      <div className="text-[9px] font-normal text-emerald-500">Ürün Uzmanıyla Anlık Chat & Meta Panel</div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CanvasCard>
-
-          {/* Kıyaslama Tablosu */}
-          <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col gap-4">
-             <div className="flex items-center gap-2 border-b border-gray-100 pb-3">
-                <Table className="w-5 h-5 text-red-600" />
-                <h3 className="font-bold text-gray-800 uppercase text-xs tracking-widest">Sistem Dönüşüm Tablosu</h3>
-             </div>
-             <div className="space-y-3">
-                <ComparisonCard 
-                   category="E-Posta Güvenliği" 
-                   oldSys="Standart Hosting Mail" 
-                   newSys="Google Workspace" 
-                   oldDesc="Yüksek spam riski, güvenilmez IP, veri kaybı ihtimali." 
-                   newDesc="%99.9 Uptime, AI destekli spam koruması, yasal arşivleme." 
-                />
-                 <ComparisonCard 
-                   category="Marka Tutarlılığı" 
-                   oldSys="Kişisel İnisiyatifler" 
-                   newSys="Merkezi Yönetim" 
-                   oldDesc="Her çalışanın imzası ve iletişim dili farklı, dağınık görüntü." 
-                   newDesc="HTML kodlu sabit imzalar, tek tip kurumsal dil ve profil." 
-                />
-             </div>
-          </div>
-        </div>
-
-        {/* --- KOLON 3: Teknik & Hedefler (Sağ) --- */}
-        <div className="md:col-span-3 flex flex-col gap-5">
-
-          {/* YENİ EKLENEN KART: Meta & WhatsApp */}
-          <CanvasCard title="Meta & WhatsApp Entegrasyonu" icon={Smartphone} variant="whatsapp">
-            <div className="text-xs text-green-700 font-bold mb-2">KURUMSAL İLETİŞİM ALTYAPISI</div>
-             <BulletPoint text="Business API: Web sitesinde 'Hemen Teklif Al' butonu ile WhatsApp Business sohbeti." />
-             <BulletPoint text="Uzman Yönlendirme: Konuya göre (Lowbed/Damper) ilgili mühendise otomatik aktarım." />
-             <BulletPoint text="Meta Suite: Facebook, Instagram ve WP mesajlarının tek panelden yönetimi." />
-          </CanvasCard>
-
-          <CanvasCard title="E-Katalog Yapısı" icon={ShoppingBag} variant="default">
-             <div className="text-xs text-red-700 font-bold mb-2">SATIŞ DEĞİL, TEKLİF YÖNETİMİ</div>
-             <BulletPoint text="Filtreleme: Tonaj, Aks Sayısı ve Yük Tipi'ne göre akıllı ürün bulucu." />
-             <BulletPoint text="Teklif Sepeti: Müşteri birden fazla ürünü 'Teklif Listesine' ekler, tek seferde fiyat ister." />
-             <BulletPoint text="PDF İndir: Her ürün sayfası için otomatik oluşturulan teknik föy." />
-          </CanvasCard>
-          
-          <CanvasCard title="Dijital İhracat Stratejisi" icon={Linkedin} className="bg-[#0077b5]/5 border-[#0077b5]/20">
-             <div className="text-xs text-[#0077b5] font-bold mb-2">LINKEDIN & SOSYAL AĞ</div>
-             <BulletPoint text="Showcase Vitrini: Fabrika sahasından profesyonel operasyon videoları." />
-             <BulletPoint text="Satış Ekibi Ağı: Personel profillerinin 'Vega Elçisi'ne dönüştürülmesi." />
-             <BulletPoint text="Güven Endeksi: Avrupalı alıcılar için şeffaf doğrulama." />
-          </CanvasCard>
-
-           <CanvasCard title="AI & GEO Optimizasyonu" icon={Cpu} className="border-purple-100 bg-purple-50/30">
-             <div className="text-xs text-purple-700 font-bold mb-2">YAPAY ZEKA GÖRÜNÜRLÜĞÜ</div>
-             <BulletPoint text="Schema Markup: Google'ın ürünleri 'anlamasını' sağlayan kodlama." />
-             <BulletPoint text="Entity Building: 'Güvenilir Üretici' etiketinin dijital inşası." />
-             <BulletPoint text="Sesli Arama: 'Siri, lowbed üreticisi bul' komutlarına uyum." />
-          </CanvasCard>
-
-          <CanvasCard title="Sprint Takvimi" icon={Calendar}>
-             <div className="space-y-3">
-               <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-1">
-                 <span className="text-gray-500">Hafta 1-2</span>
-                 <span className="font-bold text-slate-800">Altyapı & Google WS</span>
-               </div>
-               <div className="flex justify-between items-center text-xs border-b border-gray-100 pb-1">
-                 <span className="text-gray-500">Hafta 3-4</span>
-                 <span className="font-bold text-slate-800">Tasarım & İçerik</span>
-               </div>
-               <div className="flex justify-between items-center text-xs">
-                 <span className="text-gray-500">Hafta 5-6</span>
-                 <span className="font-bold text-emerald-600">Test & Canlı Yayın</span>
-               </div>
-             </div>
-          </CanvasCard>
-
-          <CanvasCard title="Proje Çıktıları" icon={Award}>
-             <BulletPoint text="Sıfır Spam Riski" highlight={true} />
-             <BulletPoint text="Kurumsal Hafıza" highlight={true} />
-             <BulletPoint text="Yüksek Dönüşüm" highlight={true} />
-          </CanvasCard>
-
-        </div>
-
-        {/* --- NEDEN SEMANUR AYYILDIZ? --- */}
-        <div className="md:col-span-12 mt-4 mb-2">
-           <div className="bg-slate-100 p-6 rounded-[2rem] border border-slate-200">
-             <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-slate-900 rounded-lg text-white">
-                  <UserCheck size={24} />
-                </div>
-                <div>
-                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">Proje Liderliği & Güven Protokolü</h3>
-                   <div className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Visual Communication & Digital Transformation Specialist</div>
-                </div>
-             </div>
-             
-             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <ProfileFeature 
-                  icon={Briefcase}
-                  title="Bütüncül Uzmanlık"
-                  desc="Sadece bir web sitesi değil, yaşayan bir dijital ekosistem kurarım. Tasarım, Yazılım ve Strateji süreçlerini tek elden, entegre yönetirim."
-                />
-                <ProfileFeature 
-                  icon={Fingerprint}
-                  title="Bağımsız Güvence"
-                  desc="Ajans bağımlılığı yaratmam. Domain, Hosting ve Google hesapları %100 sizin adınıza, sizin kartınızla açılır. Kontrol daima sizdedir."
-                />
-                <ProfileFeature 
-                  icon={Lightbulb}
-                  title="Stratejik Yaklaşım"
-                  desc="'Güzel görünen' değil, 'Satan' işler üretirim. Vega Trailer'ın sadece dijital yüzünü değil, B2B satış kabiliyetini de dönüştürürüm."
-                />
-                <ProfileFeature 
-                  icon={CheckCircle}
-                  title="Agile Yönetim"
-                  desc="Sürpriz yok. Haftalık raporlar, şeffaf takvim ve net çıktılarla çalışırım. Analiz -> Uygulama -> Test -> Teslim döngüsünü uygularım."
-                />
-             </div>
-           </div>
-        </div>
-
-        {/* --- YENİ BÖLÜM: DEVAM PROJELERİ (FUTURE OPPORTUNITIES) --- */}
-        <div className="md:col-span-12 mt-2 mb-6">
-           <div className="p-1 rounded-[2.2rem] bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200 shadow-xl">
-              <div className="bg-white p-6 rounded-[2rem] relative overflow-hidden">
-                 
-                 {/* Header */}
-                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 relative z-10">
-                   <div className="flex items-center gap-3">
-                      <div className="p-2.5 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-xl text-white shadow-lg">
-                        <Layers size={24} />
-                      </div>
-                      <div>
-                         <h3 className="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-blue-600">Devam Projeleri & Sürdürülebilir İş Birliği</h3>
-                         <p className="text-xs text-slate-500 font-medium mt-0.5">Vega Trailer için dijital dönüşümün sonraki adımları</p>
-                      </div>
-                   </div>
-                   <div className="px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-[10px] font-bold text-slate-400 tracking-wider uppercase">
-                      Next Steps
-                   </div>
-                 </div>
-
-                 {/* Grid Content */}
-                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
-                    
-                    <FutureServiceCard 
-                       icon={Layout} 
-                       title="Dijital Medya Yönetimi" 
-                       items={["Sosyal Medya Yönetimi", "Topluluk (Community) Yönetimi", "B2B İçerik Takvimi"]}
-                       colorClass="bg-purple-500"
-                       bgClass="border-purple-100 bg-purple-50/50"
-                    />
-
-                    <FutureServiceCard 
-                       icon={Video} 
-                       title="Görüntüleme & Tasarım" 
-                       items={["Fabrika/Ürün Çekimleri", "Drone Video Prodüksiyon", "Fuar/Katalog Tasarımı"]}
-                       colorClass="bg-pink-500"
-                       bgClass="border-pink-100 bg-pink-50/50"
-                    />
-
-                    <FutureServiceCard 
-                       icon={Bot} 
-                       title="Yapay Zeka İçerikleri" 
-                       items={["AI Tabanlı Blog Yazarlığı", "Otomatik Müşteri Yanıtları", "Veri Analizi & Raporlama"]}
-                       colorClass="bg-blue-500"
-                       bgClass="border-blue-100 bg-blue-50/50"
-                    />
-
-                    <FutureServiceCard 
-                       icon={PenTool} 
-                       title="Görsel İletişim & Danışmanlık" 
-                       items={["Marka Kimliği (Rebranding)", "Proje Danışmanlığı", "Dijital Kriz Yönetimi"]}
-                       colorClass="bg-orange-500"
-                       bgClass="border-orange-100 bg-orange-50/50"
-                    />
-
-                 </div>
-
-                 {/* Decorative BG */}
-                 <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-tl from-blue-100/50 to-purple-100/50 rounded-full blur-3xl -z-0"></div>
-              </div>
-           </div>
-        </div>
-
-        {/* --- FOOTER --- */}
-        <div className="md:col-span-12">
-           <div className="bg-slate-900 rounded-[2rem] p-8 md:p-10 relative overflow-hidden group cursor-pointer shadow-2xl shadow-slate-900/40 hover:scale-[1.01] transition-transform">
-              <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                 <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Geleceği İnşa Etmeye Hazırız.</h2>
-                    <p className="text-slate-400 max-w-xl text-sm md:text-base">
-                      Vega Trailer markasını, Semanur Ayyıldız'ın stratejik liderliğinde, hak ettiği global dijital standartlara taşıyın.
-                    </p>
-                 </div>
-                 <a 
-                   href="https://wa.me/905079448462?text=Merhaba,%20Vega%20Trailer%20dijital%20dönüşüm%20projesi%20için%20görüşmek%20istiyorum."
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-900/50"
-                 >
-                    Dönüşümü Başlat
-                    <ChevronRight className="w-5 h-5" />
-                 </a>
-              </div>
-              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-red-600/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
-           </div>
-        </div>
-
+      <ul class="swot-list">
+       <li>Dağınık Dijital Varlıklar</li>
+       <li>Eski Teknoloji Web Sitesi</li>
+       <li>Standartlaşmamış Kurumsal İletişim</li>
+       <li>Pasif Sosyal Medya Kullanımı</li>
+      </ul>
+     </div>
+     <div class="swot-card opportunities">
+      <div class="swot-header">
+       <div class="swot-icon">
+        O
+       </div>
+       <div class="swot-title">
+        Fırsatlar
+       </div>
+       <div class="swot-subtitle">
+        Opportunities
+       </div>
       </div>
+      <ul class="swot-list">
+       <li>LinkedIn Üzerinden B2B Satış</li>
+       <li>Yapay Zeka Aramalarında Öne Çıkma</li>
+       <li>Gelişmekte Olan Pazarlar (Afrika/Asya)</li>
+       <li>Online Katalog ile Hızlı Teklif</li>
+      </ul>
+     </div>
+     <div class="swot-card threats">
+      <div class="swot-header">
+       <div class="swot-icon">
+        T
+       </div>
+       <div class="swot-title">
+        Tehditler
+       </div>
+       <div class="swot-subtitle">
+        Threats
+       </div>
+      </div>
+      <ul class="swot-list">
+       <li>Rakiplerin Dijital Agresifliği</li>
+       <li>Siber Güvenlik / Spam Riskleri</li>
+       <li>Veri Kaybı (Yedekleme Eksikliği)</li>
+       <li>Global Ekonomik Durgunluk</li>
+      </ul>
+     </div>
     </div>
-  );
-};
+   </section><!-- System Transformation -->
+   <section class="section">
+    <div class="section-header">
+     <h2 class="section-title">Sistem <span>Dönüşüm</span> Tablosu</h2>
+     <p class="section-subtitle">Digital Transformation Roadmap</p>
+    </div>
+    <div class="comparison-table">
+     <div class="comparison-row">
+      <div class="comparison-card old">
+       <div class="comparison-label">
+        Eski Sistem
+       </div>
+       <div class="comparison-title">
+        E-Posta Güvenliği
+       </div>
+       <div class="comparison-subtitle">
+        Standart Hosting Mail
+       </div>
+       <div class="comparison-description">
+        Yüksek spam riski, güvenilmez IP reputation, veri kaybı ihtimali, yetersiz güvenlik protokolleri
+       </div>
+      </div>
+      <div class="comparison-arrow">
+       →
+      </div>
+      <div class="comparison-card new">
+       <div class="comparison-label">
+        Yeni Sistem
+       </div>
+       <div class="comparison-title">
+        Google Workspace
+       </div>
+       <div class="comparison-subtitle">
+        Enterprise Email Solution
+       </div>
+       <div class="comparison-description">
+        %99.9 Uptime garantisi, AI destekli spam koruması, otomatik yedekleme, yasal arşivleme desteği
+       </div>
+      </div>
+     </div>
+     <div class="comparison-row">
+      <div class="comparison-card old">
+       <div class="comparison-label">
+        Eski Sistem
+       </div>
+       <div class="comparison-title">
+        Marka Tutarlılığı
+       </div>
+       <div class="comparison-subtitle">
+        Kişisel İnisiyatifler
+       </div>
+       <div class="comparison-description">
+        Her çalışanın farklı e-posta imzası, tutarsız iletişim dili, dağınık görsel kimlik, marka erozyon
+       </div>
+      </div>
+      <div class="comparison-arrow">
+       →
+      </div>
+      <div class="comparison-card new">
+       <div class="comparison-label">
+        Yeni Sistem
+       </div>
+       <div class="comparison-title">
+        Merkezi Brand Yönetimi
+       </div>
+       <div class="comparison-subtitle">
+        Unified Corporate Identity
+       </div>
+       <div class="comparison-description">
+        HTML kodlu standart imzalar, tek tip kurumsal dil rehberi, tutarlı görsel kimlik, profesyonel marka algısı
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Sprint Timeline -->
+   <section class="section">
+    <div class="section-header">
+     <h2 class="section-title">Sprint <span>Takvimi</span></h2>
+     <p class="section-subtitle">6 Haftalık Agile Roadmap</p>
+    </div>
+    <div class="timeline">
+     <div class="timeline-line"></div>
+     <div class="timeline-items">
+      <div class="timeline-item">
+       <div class="timeline-node">
+        <div class="timeline-node-number">
+         01
+        </div>
+        <div class="timeline-node-label">
+         Sprint
+        </div>
+       </div>
+       <div class="timeline-connector"></div>
+       <div class="timeline-card">
+        <div class="timeline-week">
+         Hafta 1-2
+        </div>
+        <div class="timeline-title">
+         Altyapı &amp; Google Workspace
+        </div>
+        <div class="timeline-description">
+         Kurumsal dijital altyapının temelleri atılıyor. Email güvenliği, domain yönetimi ve kullanıcı onboarding süreçleri tamamlanıyor.
+        </div>
+        <div class="timeline-deliverables">
+         <div class="timeline-deliverable-title">
+          Çıktılar
+         </div>
+         <ul class="timeline-deliverable-list">
+          <li>Google Workspace Enterprise Setup</li>
+          <li>Domain DNS Konfigürasyonu (SPF, DKIM, DMARC)</li>
+          <li>Email Migration &amp; Backup Sistemi</li>
+          <li>Kullanıcı Hesapları &amp; Yetkilendirme</li>
+          <li>Güvenlik Protokolleri &amp; 2FA Aktivasyonu</li>
+         </ul>
+        </div>
+        <div class="timeline-stats">
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           15
+          </div>
+          <div class="timeline-stat-label">
+           Kullanıcı
+          </div>
+         </div>
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           99.9%
+          </div>
+          <div class="timeline-stat-label">
+           Uptime
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="timeline-item">
+       <div class="timeline-node">
+        <div class="timeline-node-number">
+         02
+        </div>
+        <div class="timeline-node-label">
+         Sprint
+        </div>
+       </div>
+       <div class="timeline-connector"></div>
+       <div class="timeline-card">
+        <div class="timeline-week">
+         Hafta 3-4
+        </div>
+        <div class="timeline-title">
+         Tasarım &amp; İçerik
+        </div>
+        <div class="timeline-description">
+         Modern web sitesi tasarımı, marka kimliği güncellemesi ve SEO stratejisi hayata geçiriliyor. İçerik üretimi ve optimize edilmesi tamamlanıyor.
+        </div>
+        <div class="timeline-deliverables">
+         <div class="timeline-deliverable-title">
+          Çıktılar
+         </div>
+         <ul class="timeline-deliverable-list">
+          <li>Responsive Web Sitesi UI/UX Tasarımı</li>
+          <li>Marka Kimlik Rehberi (Brand Guidelines)</li>
+          <li>HTML E-posta İmza Şablonları</li>
+          <li>SEO Optimized İçerik Stratejisi</li>
+          <li>Ürün Katalogu &amp; Fotoğraf Düzenleme</li>
+         </ul>
+        </div>
+        <div class="timeline-stats">
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           92%
+          </div>
+          <div class="timeline-stat-label">
+           SEO Skor
+          </div>
+         </div>
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           &lt;2s
+          </div>
+          <div class="timeline-stat-label">
+           Yüklenme
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="timeline-item">
+       <div class="timeline-node">
+        <div class="timeline-node-number">
+         03
+        </div>
+        <div class="timeline-node-label">
+         Sprint
+        </div>
+       </div>
+       <div class="timeline-connector"></div>
+       <div class="timeline-card">
+        <div class="timeline-week">
+         Hafta 5-6
+        </div>
+        <div class="timeline-title">
+         Test &amp; Go-Live
+        </div>
+        <div class="timeline-description">
+         Kapsamlı test süreçleri, performans optimizasyonu ve canlı yayına geçiş. Monitoring sistemleri kurularak sürekli iyileştirme başlatılıyor.
+        </div>
+        <div class="timeline-deliverables">
+         <div class="timeline-deliverable-title">
+          Çıktılar
+         </div>
+         <ul class="timeline-deliverable-list">
+          <li>Cross-Browser &amp; Device Testing</li>
+          <li>Performance Optimization (Core Web Vitals)</li>
+          <li>Google Analytics &amp; Search Console Setup</li>
+          <li>SSL/TLS Güvenlik Sertifikaları</li>
+          <li>Canlı Yayın &amp; Post-Launch Monitoring</li>
+         </ul>
+        </div>
+        <div class="timeline-stats">
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           100%
+          </div>
+          <div class="timeline-stat-label">
+           Test Coverage
+          </div>
+         </div>
+         <div class="timeline-stat">
+          <div class="timeline-stat-value">
+           A+
+          </div>
+          <div class="timeline-stat-label">
+           Security
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Key Features -->
+   <section class="section">
+    <div class="section-header">
+     <h2 class="section-title">Proje <span>Çıktıları</span></h2>
+     <p class="section-subtitle">Deliverables &amp; Key Results</p>
+    </div>
+    <div class="features-grid">
+     <div class="feature-card">
+      <div class="feature-icon">
+       ■
+      </div>
+      <div class="feature-title">
+       Sıfır Spam Riski
+      </div>
+      <div class="feature-description">
+       Google Workspace enterprise düzeyde e-posta güvenliği, AI destekli tehdit koruması ve spam filtreleme
+      </div>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       ▲
+      </div>
+      <div class="feature-title">
+       Kurumsal Hafıza
+      </div>
+      <div class="feature-description">
+       Tüm iletişim ve dökümanların merkezi arşivlenmesi, otomatik yedekleme ve compliance desteği
+      </div>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       ●
+      </div>
+      <div class="feature-title">
+       Yüksek Dönüşüm
+      </div>
+      <div class="feature-description">
+       Optimize edilmiş UX ile artan teklif oranları, hızlı yüklenme ve mobile-first yaklaşım
+      </div>
+     </div>
+    </div>
+   </section><!-- Leadership -->
+   <section class="leadership">
+    <div class="section-header">
+     <h2 class="section-title">Proje Liderliği &amp; <span>Güven Protokolü</span></h2>
+     <p class="section-subtitle">End-to-End Ownership &amp; Independence</p>
+    </div>
+    <div class="leadership-grid">
+     <div class="leadership-card">
+      <div class="leadership-number">
+       01
+      </div>
+      <div class="leadership-title">
+       Bütüncül Uzmanlık
+      </div>
+      <div class="leadership-text">
+       Sadece bir web sitesi değil, yaşayan bir dijital ekosistem. Tasarım, yazılım ve strateji süreçlerini tek elden, entegre şekilde yönetiyorum.
+      </div>
+     </div>
+     <div class="leadership-card">
+      <div class="leadership-number">
+       02
+      </div>
+      <div class="leadership-title">
+       Bağımsız Güvence
+      </div>
+      <div class="leadership-text">
+       Ajans bağımlılığı yaratmıyorum. Domain, hosting ve tüm dijital varlıkların tam mülkiyeti müşteriye ait. Reseller hesapları Vega Trailer adına.
+      </div>
+     </div>
+     <div class="leadership-card">
+      <div class="leadership-number">
+       03
+      </div>
+      <div class="leadership-title">
+       Tam Mülkiyet Garantisi
+      </div>
+      <div class="leadership-text">
+       Sistemi kurar, anahtarı teslim ederim. Hiçbir bağlayıcılık yoktur, tam özgürlük sağlanır. Exit stratejisi baştan planlanır.
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="footer">
+    <div class="footer-content">
+     <div class="pm-card">
+      <div class="pm-avatar">
+       SA
+      </div>
+      <div class="pm-info">
+       <div class="pm-title">
+        Proje Yöneticisi
+       </div>
+       <div class="pm-name" id="project-manager">
+        Semanur Ayyıldız
+       </div>
+      </div>
+     </div>
+     <div class="footer-text">
+      Visual Communication &amp; Digital Transformation Specialist<br>
+       Vega Trailer 2026 Strategic Transformation Plan
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            company_name: "VEGA TRAILER",
+            project_title: "Kurumsal Dönüşüm & Marka Entegrasyonu",
+            year: "2026",
+            project_manager: "Semanur Ayyıldız",
+            vision_quote: "40 yıllık endüstriyel mirası, modern teknolojinin diliyle dünyaya anlatmak.",
+            background_color: "#0a0a0a",
+            accent_color: "#c41e3a",
+            text_color: "#e5e5e5",
+            card_background: "#0f0f0f",
+            border_color: "#1a1a1a",
+            font_family: "Inter",
+            font_size: 16
+        };
 
-export default VegaTrailerCanvas;
+        async function onConfigChange(config) {
+            const companyName = config.company_name || defaultConfig.company_name;
+            const projectTitle = config.project_title || defaultConfig.project_title;
+            const year = config.year || defaultConfig.year;
+            const projectManager = config.project_manager || defaultConfig.project_manager;
+            const visionQuote = config.vision_quote || defaultConfig.vision_quote;
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseSize = config.font_size || defaultConfig.font_size;
+
+            // Update text content
+            document.getElementById('company-name').textContent = companyName;
+            document.getElementById('project-title').textContent = projectTitle;
+            document.getElementById('year').textContent = year;
+            document.getElementById('project-manager').textContent = projectManager;
+            document.getElementById('vision-quote').textContent = `"${visionQuote}"`;
+
+            // Update colors
+            document.body.style.background = backgroundColor;
+            document.body.style.color = textColor;
+
+            // Update fonts
+            const baseFontStack = '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+            const fontFamily = `${customFont}, ${baseFontStack}`;
+            document.body.style.fontFamily = fontFamily;
+
+            const h1Elements = document.querySelectorAll('h1');
+            h1Elements.forEach(h1 => {
+                h1.style.fontSize = `${baseSize * 4.5}px`;
+            });
+
+            const h2Elements = document.querySelectorAll('.section-title');
+            h2Elements.forEach(h2 => {
+                h2.style.fontSize = `${baseSize * 3.5}px`;
+            });
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => {
+                                config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["company_name", config.company_name || defaultConfig.company_name],
+                    ["project_title", config.project_title || defaultConfig.project_title],
+                    ["year", config.year || defaultConfig.year],
+                    ["project_manager", config.project_manager || defaultConfig.project_manager],
+                    ["vision_quote", config.vision_quote || defaultConfig.vision_quote]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a64721c23f36852',t:'MTc2NDQ0Mzg1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
