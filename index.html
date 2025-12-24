@@ -1,1916 +1,1022 @@
-<!doctype html>
-<html lang="tr">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vega Trailer - 2026 Stratejik Plan</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceremonics: Dijital Marka & Otorite Stratejisi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- FontAwesome for Flat Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+        :root {
+            --color-gold: #D4AF37;
+            --color-copper: #B87333;
+            --color-black: #0a0a0a;
+            --color-grey: #2F2F2F;
+            --bg-neutral: #FDFBF7;
         }
 
         body {
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: #e5e5e5;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-neutral);
+            color: #333;
         }
 
-        .container {
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .chart-container {
+            position: relative;
             width: 100%;
-            min-height: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 120px 40px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0f 100%);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(196, 30, 58, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 1400px;
+            max-width: 600px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            height: 300px; /* Mobilde biraz daha kompakt */
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
         }
 
-        .company-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(196, 30, 58, 0.1);
-            border: 2px solid #c41e3a;
-            color: #c41e3a;
-            padding: 12px 32px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 32px;
-            backdrop-filter: blur(10px);
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .company-badge::before {
-            content: '';
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
             width: 8px;
-            height: 8px;
-            background: #c41e3a;
-            animation: pulse 2s ease-in-out infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 24px;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #ffffff 0%, #c41e3a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
         }
-
-        .subtitle {
-            font-size: 28px;
-            font-weight: 300;
-            color: #999;
-            margin-bottom: 48px;
-            letter-spacing: 1px;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin-top: 64px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(196, 30, 58, 0.2);
-            padding: 32px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(196, 30, 58, 0.5);
-            box-shadow: 0 16px 32px rgba(196, 30, 58, 0.2);
-        }
-
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-
-        .stat-value {
-            font-size: 48px;
-            font-weight: 900;
-            color: #c41e3a;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 100px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 64px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 56px;
-            font-weight: 900;
-            margin-bottom: 16px;
-            color: #ffffff;
-            letter-spacing: -2px;
-        }
-
-        .section-title span {
-            color: #c41e3a;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: #666;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        /* Vision Card - Premium Design */
-        .vision-card {
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(196, 30, 58, 0.3);
-            padding: 64px;
-            margin-bottom: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6px;
-            height: 100%;
-            background: linear-gradient(180deg, #c41e3a 0%, transparent 100%);
-        }
-
-        .vision-quote {
-            font-size: 36px;
+        
+        .nav-link.active {
+            color: var(--color-copper);
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 48px;
-            line-height: 1.4;
-            letter-spacing: -1px;
-            font-style: italic;
         }
-
-        .vision-points {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .vision-point {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .vision-point:hover {
-            background: rgba(196, 30, 58, 0.05);
-            border-color: rgba(196, 30, 58, 0.3);
-            transform: translateX(8px);
-        }
-
-        .vision-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 900;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .vision-text {
-            font-size: 16px;
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        /* Score Comparison - Infographic Style */
-        .score-comparison {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 48px;
-            margin: 64px 0;
-        }
-
-        .score-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 48px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .score-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(196, 30, 58, 0.4);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(196, 30, 58, 0.2);
-        }
-
-        .score-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #c41e3a 0%, transparent 100%);
-        }
-
-        .score-label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 24px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .score-visual {
-            margin-bottom: 32px;
-        }
-
-        .score-circle {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .score-circle svg {
-            transform: rotate(-90deg);
-            width: 100%;
-            height: 100%;
-        }
-
-        .score-circle-bg {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.05);
-            stroke-width: 12;
-        }
-
-        .score-circle-fill {
-            fill: none;
-            stroke: #c41e3a;
-            stroke-width: 12;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 2s ease;
-        }
-
-        .score-circle.bad .score-circle-fill {
-            stroke: #ef4444;
-        }
-
-        .score-circle.good .score-circle-fill {
-            stroke: #10b981;
-        }
-
-        .score-value {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 56px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: -2px;
-        }
-
-        .score-description {
-            text-align: center;
-            font-size: 16px;
-            color: #999;
-            line-height: 1.6;
-        }
-
-        /* SWOT Analysis - Premium Grid */
-        .swot-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: rgba(196, 30, 58, 0.2);
-            margin: 64px 0;
-        }
-
-        .swot-card {
-            background: #0f0f0f;
-            padding: 48px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .swot-card:hover {
-            background: #151515;
-            transform: scale(1.02);
-            z-index: 10;
-        }
-
-        .swot-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-        }
-
-        .swot-card.strengths::before {
-            background: #10b981;
-        }
-
-        .swot-card.weaknesses::before {
-            background: #ef4444;
-        }
-
-        .swot-card.opportunities::before {
-            background: #f59e0b;
-        }
-
-        .swot-card.threats::before {
-            background: #8b5cf6;
-        }
-
-        .swot-header {
-            margin-bottom: 32px;
-        }
-
-        .swot-icon {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: 900;
-            border: 2px solid;
-        }
-
-        .swot-card.strengths .swot-icon {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: #10b981;
-            color: #10b981;
-        }
-
-        .swot-card.weaknesses .swot-icon {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: #ef4444;
-            color: #ef4444;
-        }
-
-        .swot-card.opportunities .swot-icon {
-            background: rgba(245, 158, 11, 0.1);
-            border-color: #f59e0b;
-            color: #f59e0b;
-        }
-
-        .swot-card.threats .swot-icon {
-            background: rgba(139, 92, 246, 0.1);
-            border-color: #8b5cf6;
-            color: #8b5cf6;
-        }
-
-        .swot-title {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .swot-subtitle {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .swot-list {
-            list-style: none;
-        }
-
-        .swot-list li {
-            padding: 16px 0;
-            padding-left: 32px;
-            position: relative;
-            font-size: 15px;
-            color: #ccc;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .swot-list li:last-child {
-            border-bottom: none;
-        }
-
-        .swot-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 2px;
-            background: #c41e3a;
-        }
-
-        /* Comparison Table - Modern Design */
-        .comparison-table {
-            margin: 64px 0;
-            overflow-x: auto;
-        }
-
-        .comparison-row {
-            display: grid;
-            grid-template-columns: 1fr 80px 1fr;
-            gap: 32px;
-            margin-bottom: 48px;
-            align-items: center;
-        }
-
-        .comparison-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .comparison-card:hover {
-            transform: translateX(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        .comparison-card.old {
-            border-left: 4px solid #ef4444;
-        }
-
-        .comparison-card.old:hover {
-            border-left-color: #ef4444;
-            background: rgba(239, 68, 68, 0.05);
-        }
-
-        .comparison-card.new {
-            border-left: 4px solid #10b981;
-        }
-
-        .comparison-card.new:hover {
-            transform: translateX(8px);
-            border-left-color: #10b981;
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        .comparison-label {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .comparison-card.old .comparison-label {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .comparison-card.new .comparison-label {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .comparison-title {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        .comparison-subtitle {
-            font-size: 14px;
-            color: #c41e3a;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .comparison-description {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.7;
-        }
-
-        .comparison-arrow {
-            font-size: 48px;
-            color: #c41e3a;
-            text-align: center;
-            font-weight: 300;
-        }
-
-        /* Timeline - Premium Roadmap */
-        .timeline {
-            position: relative;
-            margin: 64px 0;
-            padding: 80px 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #c41e3a 0%, #c41e3a 50%, rgba(196, 30, 58, 0.3) 100%);
-            transform: translateY(-50%);
-            z-index: 0;
-        }
-
-        .timeline-items {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 64px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-item {
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .timeline-item:hover {
-            transform: scale(1.05);
-        }
-
-        .timeline-node {
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
-            border: 6px solid #0a0a0a;
-            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.4s ease;
-        }
-
-        .timeline-item:hover .timeline-node {
-            transform: translateX(-50%) scale(1.15);
-            box-shadow: 0 0 0 8px rgba(196, 30, 58, 0.4), 0 20px 40px rgba(196, 30, 58, 0.3);
-        }
-
-        .timeline-node-number {
-            font-size: 48px;
-            font-weight: 900;
-            color: #ffffff;
-            line-height: 1;
-            margin-bottom: 4px;
-            letter-spacing: -2px;
-        }
-
-        .timeline-node-label {
-            font-size: 10px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .timeline-connector {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 40px;
-            background: linear-gradient(180deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
-            z-index: 5;
-        }
-
-        .timeline-card {
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 2px solid rgba(196, 30, 58, 0.2);
-            padding: 48px 32px 32px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .timeline-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #c41e3a 0%, #8a1528 100%);
-        }
-
-        .timeline-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .timeline-item:hover .timeline-card {
-            border-color: rgba(196, 30, 58, 0.5);
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-        }
-
-        .timeline-item:hover .timeline-card::after {
-            opacity: 1;
-        }
-
-        .timeline-week {
-            display: inline-block;
-            background: rgba(196, 30, 58, 0.15);
-            border: 1px solid rgba(196, 30, 58, 0.4);
-            color: #c41e3a;
-            padding: 8px 20px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-title {
-            font-size: 26px;
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-description {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.8;
-            margin-bottom: 32px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-deliverables {
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-deliverable-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .timeline-deliverable-list {
-            list-style: none;
-        }
-
-        .timeline-deliverable-list li {
-            font-size: 14px;
-            color: #aaa;
-            padding: 10px 0;
-            padding-left: 28px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-deliverable-list li:hover {
-            color: #ffffff;
-            padding-left: 32px;
-        }
-
-        .timeline-deliverable-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background: rgba(196, 30, 58, 0.2);
-            border: 1px solid rgba(196, 30, 58, 0.4);
-            color: #c41e3a;
-            font-size: 11px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .timeline-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-stat {
-            text-align: center;
-        }
-
-        .timeline-stat-value {
-            font-size: 28px;
-            font-weight: 900;
-            color: #c41e3a;
-            margin-bottom: 4px;
-            letter-spacing: -1px;
-        }
-
-        .timeline-stat-label {
-            font-size: 10px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        /* Features - Icon Cards */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin: 64px 0;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 56px 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(196, 30, 58, 0.5);
-            transform: translateY(-8px);
-        }
-
-        .feature-icon {
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.2) 0%, rgba(196, 30, 58, 0.05) 100%);
-            border: 2px solid rgba(196, 30, 58, 0.3);
-            color: #c41e3a;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-title {
-            font-size: 22px;
-            font-weight: 900;
-            margin-bottom: 16px;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-description {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Leadership Section */
-        .leadership {
-            background: rgba(196, 30, 58, 0.03);
-            border-top: 1px solid rgba(196, 30, 58, 0.2);
-            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
-            padding: 100px 40px;
-            margin: 100px 0;
-        }
-
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .leadership-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 48px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leadership-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(180deg, #c41e3a 0%, transparent 100%);
-            transition: height 0.4s ease;
-        }
-
-        .leadership-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(196, 30, 58, 0.5);
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(196, 30, 58, 0.15);
-        }
-
-        .leadership-card:hover::before {
-            height: 100%;
-        }
-
-        .leadership-number {
-            font-size: 72px;
-            font-weight: 900;
-            color: rgba(196, 30, 58, 0.2);
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        .leadership-title {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        .leadership-text {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.7;
-        }
-
-        /* Footer */
-        .footer {
-            background: #000000;
-            padding: 64px 40px;
-            text-align: center;
-            border-top: 1px solid rgba(196, 30, 58, 0.2);
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pm-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 24px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(196, 30, 58, 0.3);
-            padding: 24px 40px;
-            margin-bottom: 32px;
-        }
-
-        .pm-avatar {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #c41e3a 0%, #8a1528 100%);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 900;
-        }
-
-        .pm-info {
-            text-align: left;
-        }
-
-        .pm-title {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .pm-name {
-            font-size: 22px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .footer-text {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .swot-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid,
-            .leadership-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-items {
-                grid-template-columns: 1fr;
-                gap: 80px;
-                padding-left: 80px;
-            }
-
-            .timeline-line {
-                left: 40px;
-                transform: none;
-                width: 4px;
-                height: 100%;
-                top: 0;
-                background: linear-gradient(180deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
-            }
-
-            .timeline-item {
-                position: relative;
-            }
-
-            .timeline-node {
-                top: 0;
-                left: -80px;
-                transform: none;
-                width: 80px;
-                height: 80px;
-            }
-
-            .timeline-item:hover .timeline-node {
-                transform: scale(1.1);
-            }
-
-            .timeline-connector {
-                top: 40px;
-                left: -40px;
-                transform: none;
-                width: 40px;
-                height: 2px;
-                background: linear-gradient(90deg, #c41e3a 0%, rgba(196, 30, 58, 0.3) 100%);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            .subtitle {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .section-subtitle {
-                font-size: 16px;
-            }
-
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .stat-card {
-                padding: 24px;
-            }
-
-            .stat-value {
-                font-size: 36px;
-            }
-
-            .comparison-row {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .comparison-arrow {
-                transform: rotate(90deg);
-                font-size: 32px;
-            }
-
-            .hero {
-                padding: 64px 20px;
-            }
-
-            .section {
-                padding: 48px 20px;
-            }
-
-            .vision-card {
-                padding: 28px 20px;
-            }
-
-            .vision-quote {
-                font-size: 20px;
-                margin-bottom: 32px;
-            }
-
-            .vision-points {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .vision-point {
-                padding: 20px;
-            }
-
-            .score-comparison {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .score-card {
-                padding: 32px 20px;
-            }
-
-            .swot-card {
-                padding: 32px 20px;
-            }
-
-            .comparison-card {
-                padding: 24px 20px;
-            }
-
-            .comparison-title {
-                font-size: 20px;
-            }
-
-            .feature-card {
-                padding: 36px 24px;
-            }
-
-            .feature-icon {
-                width: 72px;
-                height: 72px;
-                font-size: 36px;
-            }
-
-            .leadership {
-                padding: 48px 20px;
-            }
-
-            .leadership-card {
-                padding: 28px 20px;
-            }
-
-            .leadership-number {
-                font-size: 56px;
-            }
-
-            .timeline-items {
-                padding-left: 60px;
-                gap: 64px;
-            }
-
-            .timeline-line {
-                left: 30px;
-            }
-
-            .timeline-node {
-                left: -60px;
-                width: 60px;
-                height: 60px;
-            }
-
-            .timeline-node-number {
-                font-size: 32px;
-            }
-
-            .timeline-node-label {
-                font-size: 8px;
-            }
-
-            .timeline-connector {
-                top: 30px;
-                left: -30px;
-                width: 30px;
-            }
-
-            .timeline-card {
-                padding: 32px 20px 24px;
-            }
-
-            .timeline-title {
-                font-size: 22px;
-            }
-
-            .timeline-description {
-                font-size: 14px;
-            }
-
-            .pm-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 24px;
-            }
-
-            .pm-info {
-                text-align: center;
-            }
+        
+        /* Floating CTA animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
+
+        /* Fade In Up Animation for Intro */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
         }
     </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
- <body>
-  <div class="container"><!-- Hero Section -->
-   <section class="hero">
-    <div class="hero-content">
-     <div class="company-badge"><span id="company-name">VEGA TRAILER</span>
-     </div>
-     <h1 id="project-title">Kurumsal Dönüşüm &amp; Marka Entegrasyonu</h1>
-     <div class="subtitle">
-      Stratejik Dönüşüm Planı <span id="year">2026</span>
-     </div>
-     <div class="hero-stats">
-      <div class="stat-card">
-       <div class="stat-value">
-        6
-       </div>
-       <div class="stat-label">
-        Hafta Sprint
-       </div>
-      </div>
-      <div class="stat-card">
-       <div class="stat-value">
-        92%
-       </div>
-       <div class="stat-label">
-        Hedef Skor
-       </div>
-      </div>
-      <div class="stat-card">
-       <div class="stat-value">
-        40+
-       </div>
-       <div class="stat-label">
-        Yıl Tecrübe
-       </div>
-      </div>
-      <div class="stat-card">
-       <div class="stat-value">
-        100%
-       </div>
-       <div class="stat-label">
-        Marka Uyumu
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Vision Section -->
-   <section class="section">
-    <div class="vision-card">
-     <div class="vision-quote" id="vision-quote">
-      "40 yıllık endüstriyel mirası, modern teknolojinin diliyle dünyaya anlatmak."
-     </div>
-     <div class="vision-points">
-      <div class="vision-point">
-       <div class="vision-icon">
-        G
-       </div>
-       <div class="vision-text">
-        Global Güven İnşası: Avrupa pazarında 'Premium Partner' algısını yerleştirmek
-       </div>
-      </div>
-      <div class="vision-point">
-       <div class="vision-icon">
-        S
-       </div>
-       <div class="vision-text">
-        Sürdürülebilir İmaj: Zamandan bağımsız, tutarlı bir kurumsal kimlik
-       </div>
-      </div>
-      <div class="vision-point">
-       <div class="vision-icon">
-        T
-       </div>
-       <div class="vision-text">
-        Tek Seslilik: Web sitesinden e-posta imzasına kadar %100 uyumlu hitabet
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Digital Health Score -->
-   <section class="section">
-    <div class="section-header">
-     <h2 class="section-title">Dijital <span>Sağlık Skoru</span></h2>
-     <p class="section-subtitle">Google Core Web Vitals &amp; SEO Performance Analysis</p>
-    </div>
-    <div class="score-comparison">
-     <div class="score-card">
-      <div class="score-label">
-       Mevcut Durum
-      </div>
-      <div class="score-visual">
-       <div class="score-circle bad">
-        <svg viewbox="0 0 200 200"><circle class="score-circle-bg" cx="100" cy="100" r="90"></circle> <circle class="score-circle-fill" cx="100" cy="100" r="90" stroke-dasharray="565.48" stroke-dashoffset="367.56"></circle>
-        </svg>
-        <div class="score-value">
-         35%
+    <!-- Structure: Single Page Landing Page (Fully Responsive) -->
+    <!-- Theme: Bright Luxury (White/Gold/Copper) -->
+</head>
+<body class="text-stone-800 antialiased">
+
+    <!-- Fixed Header -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm border-b border-stone-100 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#welcome" class="serif-font text-xl md:text-2xl font-bold tracking-widest text-[#0a0a0a]">
+                        CEREMONICS
+                    </a>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#vizyon" class="nav-link text-xs uppercase tracking-wide text-stone-500 hover:text-[#B87333] transition-colors">Vizyon</a>
+                    <a href="#kimlik" class="nav-link text-xs uppercase tracking-wide text-stone-500 hover:text-[#B87333] transition-colors">Kimlik</a>
+                    <a href="#pazar" class="nav-link text-xs uppercase tracking-wide text-stone-500 hover:text-[#B87333] transition-colors">Pazar</a>
+                    <a href="#geo" class="nav-link text-xs uppercase tracking-wide text-stone-500 hover:text-[#B87333] transition-colors">GEO</a>
+                    <a href="#blog-demo" class="nav-link text-xs uppercase tracking-wide text-stone-500 hover:text-[#B87333] transition-colors font-bold text-[#D4AF37]">Örnek Blog</a>
+                    <a href="#teklif" class="px-5 py-2 bg-[#0a0a0a] text-white text-xs uppercase tracking-widest hover:bg-[#B87333] transition-colors">Teklifi İncele</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-stone-800 hover:text-[#B87333] focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-       </div>
-      </div>
-      <div class="score-description">
-       Düşük performans ve SEO skoru<br>
-       Yavaş yüklenme, mobil uyumsuzluk
-      </div>
-     </div>
-     <div class="score-card">
-      <div class="score-label">
-       Hedeflenen (6 Hafta)
-      </div>
-      <div class="score-visual">
-       <div class="score-circle good">
-        <svg viewbox="0 0 200 200"><circle class="score-circle-bg" cx="100" cy="100" r="90"></circle> <circle class="score-circle-fill" cx="100" cy="100" r="90" stroke-dasharray="565.48" stroke-dashoffset="45.24"></circle>
-        </svg>
-        <div class="score-value">
-         92%
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-stone-100 absolute w-full z-40 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#vizyon" class="block py-3 px-2 text-stone-600 hover:text-[#B87333] hover:bg-stone-50 rounded border-b border-stone-50">Vizyon</a>
+                <a href="#kimlik" class="block py-3 px-2 text-stone-600 hover:text-[#B87333] hover:bg-stone-50 rounded border-b border-stone-50">Kimlik</a>
+                <a href="#pazar" class="block py-3 px-2 text-stone-600 hover:text-[#B87333] hover:bg-stone-50 rounded border-b border-stone-50">Pazar</a>
+                <a href="#geo" class="block py-3 px-2 text-stone-600 hover:text-[#B87333] hover:bg-stone-50 rounded border-b border-stone-50">GEO</a>
+                <a href="#blog-demo" class="block py-3 px-2 text-stone-600 hover:text-[#B87333] hover:bg-stone-50 rounded border-b border-stone-50">Örnek Blog</a>
+                <a href="#teklif" class="block py-3 px-2 font-bold text-[#B87333] bg-stone-50 rounded mt-2">Fiyat Teklifi</a>
+            </div>
         </div>
-       </div>
-      </div>
-      <div class="score-description">
-       Optimum performans ve görünürlük<br>
-       Hızlı, SEO optimized, mobile-first
-      </div>
-     </div>
-    </div>
-   </section><!-- SWOT Analysis -->
-   <section class="section">
-    <div class="section-header">
-     <h2 class="section-title">Dijital <span>SWOT</span> Analizi</h2>
-     <p class="section-subtitle">Stratejik Durum Değerlendirmesi</p>
-    </div>
-    <div class="swot-grid">
-     <div class="swot-card strengths">
-      <div class="swot-header">
-       <div class="swot-icon">
-        S
-       </div>
-       <div class="swot-title">
-        Güçlü Yönler
-       </div>
-       <div class="swot-subtitle">
-        Strengths
-       </div>
-      </div>
-      <ul class="swot-list">
-       <li>40+ Yıllık Üretim Tecrübesi</li>
-       <li>VDI Sertifikalı Ürün Gamı</li>
-       <li>Güçlü İhracat Kapasitesi</li>
-       <li>Yerleşik Fiziksel Marka Bilinirliği</li>
-      </ul>
-     </div>
-     <div class="swot-card weaknesses">
-      <div class="swot-header">
-       <div class="swot-icon">
-        W
-       </div>
-       <div class="swot-title">
-        Zayıf Yönler
-       </div>
-       <div class="swot-subtitle">
-        Weaknesses
-       </div>
-      </div>
-      <ul class="swot-list">
-       <li>Dağınık Dijital Varlıklar</li>
-       <li>Eski Teknoloji Web Sitesi</li>
-       <li>Standartlaşmamış Kurumsal İletişim</li>
-       <li>Pasif Sosyal Medya Kullanımı</li>
-      </ul>
-     </div>
-     <div class="swot-card opportunities">
-      <div class="swot-header">
-       <div class="swot-icon">
-        O
-       </div>
-       <div class="swot-title">
-        Fırsatlar
-       </div>
-       <div class="swot-subtitle">
-        Opportunities
-       </div>
-      </div>
-      <ul class="swot-list">
-       <li>LinkedIn Üzerinden B2B Satış</li>
-       <li>Yapay Zeka Aramalarında Öne Çıkma</li>
-       <li>Gelişmekte Olan Pazarlar (Afrika/Asya)</li>
-       <li>Online Katalog ile Hızlı Teklif</li>
-      </ul>
-     </div>
-     <div class="swot-card threats">
-      <div class="swot-header">
-       <div class="swot-icon">
-        T
-       </div>
-       <div class="swot-title">
-        Tehditler
-       </div>
-       <div class="swot-subtitle">
-        Threats
-       </div>
-      </div>
-      <ul class="swot-list">
-       <li>Rakiplerin Dijital Agresifliği</li>
-       <li>Siber Güvenlik / Spam Riskleri</li>
-       <li>Veri Kaybı (Yedekleme Eksikliği)</li>
-       <li>Global Ekonomik Durgunluk</li>
-      </ul>
-     </div>
-    </div>
-   </section><!-- System Transformation -->
-   <section class="section">
-    <div class="section-header">
-     <h2 class="section-title">Sistem <span>Dönüşüm</span> Tablosu</h2>
-     <p class="section-subtitle">Digital Transformation Roadmap</p>
-    </div>
-    <div class="comparison-table">
-     <div class="comparison-row">
-      <div class="comparison-card old">
-       <div class="comparison-label">
-        Eski Sistem
-       </div>
-       <div class="comparison-title">
-        E-Posta Güvenliği
-       </div>
-       <div class="comparison-subtitle">
-        Standart Hosting Mail
-       </div>
-       <div class="comparison-description">
-        Yüksek spam riski, güvenilmez IP reputation, veri kaybı ihtimali, yetersiz güvenlik protokolleri
-       </div>
-      </div>
-      <div class="comparison-arrow">
-       →
-      </div>
-      <div class="comparison-card new">
-       <div class="comparison-label">
-        Yeni Sistem
-       </div>
-       <div class="comparison-title">
-        Google Workspace
-       </div>
-       <div class="comparison-subtitle">
-        Enterprise Email Solution
-       </div>
-       <div class="comparison-description">
-        %99.9 Uptime garantisi, AI destekli spam koruması, otomatik yedekleme, yasal arşivleme desteği
-       </div>
-      </div>
-     </div>
-     <div class="comparison-row">
-      <div class="comparison-card old">
-       <div class="comparison-label">
-        Eski Sistem
-       </div>
-       <div class="comparison-title">
-        Marka Tutarlılığı
-       </div>
-       <div class="comparison-subtitle">
-        Kişisel İnisiyatifler
-       </div>
-       <div class="comparison-description">
-        Her çalışanın farklı e-posta imzası, tutarsız iletişim dili, dağınık görsel kimlik, marka erozyon
-       </div>
-      </div>
-      <div class="comparison-arrow">
-       →
-      </div>
-      <div class="comparison-card new">
-       <div class="comparison-label">
-        Yeni Sistem
-       </div>
-       <div class="comparison-title">
-        Merkezi Brand Yönetimi
-       </div>
-       <div class="comparison-subtitle">
-        Unified Corporate Identity
-       </div>
-       <div class="comparison-description">
-        HTML kodlu standart imzalar, tek tip kurumsal dil rehberi, tutarlı görsel kimlik, profesyonel marka algısı
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Sprint Timeline -->
-   <section class="section">
-    <div class="section-header">
-     <h2 class="section-title">Sprint <span>Takvimi</span></h2>
-     <p class="section-subtitle">6 Haftalık Agile Roadmap</p>
-    </div>
-    <div class="timeline">
-     <div class="timeline-line"></div>
-     <div class="timeline-items">
-      <div class="timeline-item">
-       <div class="timeline-node">
-        <div class="timeline-node-number">
-         01
+    </header>
+
+    <!-- NEW: WELCOME / INTRO PAGE -->
+    <section id="welcome" class="min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center bg-[#FDFBF7] relative px-4 pt-20">
+        <!-- Subtle Pattern Overlay -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30 pointer-events-none"></div>
+        
+        <div class="max-w-3xl mx-auto text-center relative z-10 animate-fade-in-up px-4">
+            <!-- Icon -->
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center text-2xl md:text-3xl text-[#B87333] shadow-lg border border-[#D4AF37] mx-auto mb-6 md:mb-8 float-anim">
+                <i class="fa-regular fa-handshake"></i>
+            </div>
+            
+            <!-- Greeting -->
+            <h1 class="serif-font text-4xl md:text-7xl text-[#0a0a0a] mb-4 md:mb-6 tracking-tight">Merhaba Kadir!</h1>
+            
+            <!-- Message -->
+            <p class="text-base md:text-2xl text-stone-600 font-light leading-relaxed mb-8">
+                Ceremonics markasının dijital dünyadaki ilk adımını birlikte atmak için genel bir araştırma paketi sunuyorum.
+            </p>
+            
+            <!-- Signature -->
+            <p class="text-sm md:text-md text-[#B87333] font-serif italic mb-8 md:mb-12">
+                "Bir telefon uzağındayım..."
+            </p>
+            
+            <!-- Action -->
+            <a href="#hero" class="inline-block border-b-2 border-[#0a0a0a] pb-2 text-[#0a0a0a] text-xs md:text-sm uppercase tracking-[0.2em] font-bold hover:text-[#B87333] hover:border-[#B87333] transition-all duration-300">
+                Yolculuğa Başla <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
         </div>
-        <div class="timeline-node-label">
-         Sprint
+    </section>
+
+    <!-- Hero Section (Branding Intro) -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-white border-t border-stone-100">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#f5eee0] to-transparent opacity-50"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#B87333] rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-pulse"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 border border-[#D4AF37] rounded-full text-[10px] md:text-xs font-bold tracking-widest text-[#D4AF37] mb-6 uppercase reveal active">
+                Stratejik Marka Dönüşümü
+            </span>
+            <h1 class="serif-font text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#0a0a0a] leading-tight mb-6 md:mb-8 reveal active delay-100">
+                CEREMONICS<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#B87333] italic text-3xl sm:text-4xl md:text-6xl">Digital Authority</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-base md:text-xl text-stone-600 font-light leading-relaxed mb-8 md:mb-12 reveal active delay-200">
+                Sadece bir organizasyon şirketi değil, kutlama sektörünün dijital otoritesi.
+                Geleneksel vitrinden, yapay zeka destekli bir medya platformuna geçiş hikayesi.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal active delay-300">
+                <a href="#vizyon" class="px-8 py-4 bg-[#0a0a0a] text-white uppercase tracking-widest text-xs hover:bg-[#B87333] transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto text-center">
+                    Projeyi Keşfet <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+                <a href="#teklif" class="px-8 py-4 border border-[#0a0a0a] text-[#0a0a0a] uppercase tracking-widest text-xs hover:bg-white hover:text-[#B87333] hover:border-[#B87333] transition-all duration-300 w-full sm:w-auto text-center">
+                    Fiyat Teklifi
+                </a>
+            </div>
         </div>
-       </div>
-       <div class="timeline-connector"></div>
-       <div class="timeline-card">
-        <div class="timeline-week">
-         Hafta 1-2
+    </section>
+
+    <!-- 1. VIZYON SECTION -->
+    <section id="vizyon" class="py-16 md:py-24 bg-white reveal-section border-t border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <i class="fa-solid fa-layer-group text-[#D4AF37] text-3xl mb-4"></i>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a] mb-4">Yönetici Özeti</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="bg-[#FDFBF7] p-8 md:p-10 border-l-4 border-[#D4AF37] reveal">
+                    <h3 class="serif-font text-xl md:text-2xl mb-4 text-[#0a0a0a]">Mevcut Durum</h3>
+                    <p class="text-stone-600 leading-relaxed mb-6 text-sm md:text-base">
+                        Klasik "hizmet vitrini" anlayışı. Kullanıcılar sadece satın alma ihtiyacı olduğunda siteyi ziyaret eder. Trafik düşüktür ve marka sadakati zayıftır.
+                    </p>
+                    <div class="flex items-center gap-2 text-stone-400 text-sm">
+                        <i class="fa-solid fa-store"></i> Pasif Vitrin
+                    </div>
+                </div>
+                
+                <div class="bg-[#0a0a0a] p-8 md:p-10 text-white border-l-4 border-[#B87333] shadow-2xl transform md:scale-105 reveal">
+                    <h3 class="serif-font text-xl md:text-2xl mb-4 text-[#D4AF37]">Yeni Vizyon</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
+                        Medya Platformu (Publishing House). Ziyaretçiyi "okuyucu" olarak çek, "takipçi"ye dönüştür, en sonunda "müşteri" olarak hizmet sat. Güven duyulan bir otorite.
+                    </p>
+                    <div class="flex items-center gap-2 text-[#B87333] text-sm font-bold">
+                        <i class="fa-solid fa-newspaper"></i> Aktif Otorite
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transformation Flow -->
+            <div class="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center reveal">
+                <div class="p-4 md:p-6">
+                    <div class="w-16 h-16 rounded-full bg-stone-50 flex items-center justify-center text-2xl text-stone-400 mx-auto mb-4 border border-stone-200">
+                        <i class="fa-regular fa-eye"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">1. Ziyaretçi</h4>
+                    <p class="text-sm text-stone-500 mt-2">Trafik Çekme</p>
+                </div>
+                <div class="hidden md:block absolute left-1/3 top-1/2 w-20 border-t-2 border-dashed border-[#B87333] transform -translate-y-1/2 z-0"></div> <!-- Connector Line simulation -->
+                
+                <div class="p-4 md:p-6 relative">
+                    <div class="w-16 h-16 rounded-full bg-[#FFF8E1] flex items-center justify-center text-2xl text-[#D4AF37] mx-auto mb-4 border border-[#D4AF37]">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">2. Okuyucu</h4>
+                    <p class="text-sm text-stone-500 mt-2">Otorite Kurma</p>
+                </div>
+                
+                <div class="p-4 md:p-6">
+                    <div class="w-16 h-16 rounded-full bg-[#0a0a0a] flex items-center justify-center text-2xl text-white mx-auto mb-4 shadow-lg float-anim">
+                        <i class="fa-solid fa-handshake-simple"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">3. Müşteri</h4>
+                    <p class="text-sm text-stone-500 mt-2">Hizmet Satışı</p>
+                </div>
+            </div>
         </div>
-        <div class="timeline-title">
-         Altyapı &amp; Google Workspace
+    </section>
+
+    <!-- 2. KIMLIK SECTION -->
+    <section id="kimlik" class="py-16 md:py-24 bg-[#FDFBF7] border-t border-stone-100 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-8 md:gap-12">
+                <!-- Text & Colors -->
+                <div class="lg:col-span-5 reveal">
+                    <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2 block">Görsel Kimlik</span>
+                    <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a] mb-6">Aydınlık Lüks <br><span class="italic text-stone-500 text-2xl md:text-3xl">(Bright Luxury)</span></h2>
+                    <p class="text-stone-600 mb-8 leading-relaxed text-sm md:text-base">
+                        Markanın görsel dünyası, ferah, minimalist ve rafine bir estetikle, Vogue Weddings standartlarında aydınlık ve nefes alan bir atmosfer sunacaktır.
+                    </p>
+                    
+                    <!-- Color Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 border border-stone-200 shadow-sm group hover:border-[#D4AF37] transition-colors">
+                            <div class="h-8 w-8 bg-white border border-stone-100 rounded-full mb-2"></div>
+                            <span class="block font-bold text-sm">Pearl White</span>
+                            <span class="text-xs text-stone-400">#FFFFFF</span>
+                        </div>
+                        <div class="bg-white p-4 border border-stone-200 shadow-sm group hover:border-[#D4AF37] transition-colors">
+                            <div class="h-8 w-8 bg-[#D4AF37] rounded-full mb-2"></div>
+                            <span class="block font-bold text-sm">Elegant Gold</span>
+                            <span class="text-xs text-stone-400">#D4AF37</span>
+                        </div>
+                        <div class="bg-white p-4 border border-stone-200 shadow-sm group hover:border-[#D4AF37] transition-colors">
+                            <div class="h-8 w-8 bg-[#B87333] rounded-full mb-2"></div>
+                            <span class="block font-bold text-sm">Living Copper</span>
+                            <span class="text-xs text-stone-400">#B87333</span>
+                        </div>
+                        <div class="bg-white p-4 border border-stone-200 shadow-sm group hover:border-[#D4AF37] transition-colors">
+                            <div class="h-8 w-8 bg-[#2F2F2F] rounded-full mb-2"></div>
+                            <span class="block font-bold text-sm">Slate Grey</span>
+                            <span class="text-xs text-stone-400">#2F2F2F</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Browser Mockup -->
+                <div class="lg:col-span-7 reveal delay-200">
+                    <div class="rounded-lg overflow-hidden shadow-2xl bg-white border border-stone-200 transform lg:rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <!-- Header -->
+                        <div class="bg-stone-100 border-b border-stone-200 p-3 flex items-center space-x-2">
+                            <div class="w-2 md:w-3 h-2 md:h-3 rounded-full bg-red-400"></div>
+                            <div class="w-2 md:w-3 h-2 md:h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-2 md:w-3 h-2 md:h-3 rounded-full bg-green-400"></div>
+                            <div class="ml-2 md:ml-4 bg-white px-3 py-1 rounded text-[10px] md:text-xs text-stone-400 flex-1 text-center font-mono flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-lock text-[8px]"></i> ceremonics.com
+                            </div>
+                        </div>
+                        <!-- Content -->
+                        <div class="p-8 md:p-20 text-center bg-white relative">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] via-[#B87333] to-white"></div>
+                            <span class="text-[#B87333] tracking-[0.3em] uppercase text-[10px] md:text-xs mb-4 md:mb-6 block font-bold">Editorial Wedding & Events</span>
+                            <h1 class="serif-font text-3xl md:text-7xl text-[#0a0a0a] mb-6 md:mb-8 tracking-tight">CEREMONICS</h1>
+                            <p class="text-stone-500 max-w-lg mx-auto mb-8 md:mb-10 font-light text-xs md:text-sm italic">
+                                "Kutlamaların sanata dönüştüğü nokta."
+                            </p>
+                            <button class="border border-[#B87333] text-[#B87333] px-6 md:px-8 py-2 md:py-3 uppercase tracking-widest text-[10px] md:text-xs font-bold hover:bg-[#B87333] hover:text-white transition-colors">
+                                Discover
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="timeline-description">
-         Kurumsal dijital altyapının temelleri atılıyor. Email güvenliği, domain yönetimi ve kullanıcı onboarding süreçleri tamamlanıyor.
+    </section>
+
+    <!-- 3. PAZAR ANALIZI SECTION -->
+    <section id="pazar" class="py-16 md:py-24 bg-white reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2">Konumlandırma</span>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a]">Pazar & Rekabet Analizi</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 md:gap-12 items-center mb-16">
+                <!-- Competitor List -->
+                <div class="lg:col-span-1 space-y-4 reveal">
+                    <div class="p-4 md:p-6 border border-stone-100 hover:shadow-lg transition-shadow rounded bg-[#FDFBF7]">
+                        <h4 class="font-bold text-stone-800 mb-2 flex justify-between">
+                            Düğün.com <i class="fa-solid fa-users text-stone-300"></i>
+                        </h4>
+                        <p class="text-xs text-stone-500">Pazar yeri mantığı. "Kalabalık".</p>
+                    </div>
+                    <div class="p-4 md:p-6 border border-stone-100 hover:shadow-lg transition-shadow rounded bg-[#FDFBF7]">
+                        <h4 class="font-bold text-stone-800 mb-2 flex justify-between">
+                            Org. Firmaları <i class="fa-regular fa-images text-stone-300"></i>
+                        </h4>
+                        <p class="text-xs text-stone-500">Sadece portfolyo. "Statik".</p>
+                    </div>
+                    <div class="p-4 md:p-6 border-l-4 border-[#D4AF37] shadow-md rounded bg-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-2 opacity-10 text-[#D4AF37] text-4xl"><i class="fa-solid fa-crown"></i></div>
+                        <h4 class="font-bold text-[#D4AF37] mb-2">Vogue Weddings</h4>
+                        <p class="text-xs text-stone-500">Hizmetten çok "İlham" satıyor. <br><strong>Modelimiz budur.</strong></p>
+                    </div>
+                </div>
+
+                <!-- Radar Chart -->
+                <div class="lg:col-span-2 reveal delay-200">
+                    <div class="bg-[#FDFBF7] p-4 rounded-xl shadow-inner border border-stone-100">
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-stone-400 mt-4">
+                            <i class="fa-solid fa-circle text-[#D4AF37]"></i> Ceremonics, Editöryal Derinlik ve Lüks algısında liderliği hedefler.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VOGUE MODEL DEEP DIVE (NEW) -->
+            <div class="reveal bg-[#0a0a0a] text-white p-8 md:p-16 rounded-xl shadow-2xl relative overflow-hidden mb-16">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37] rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-start mb-8 md:mb-10">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-[#D4AF37] text-black flex items-center justify-center text-2xl md:text-3xl font-serif font-bold rounded-full flex-shrink-0">V</div>
+                        <div>
+                            <h3 class="serif-font text-2xl md:text-4xl text-white mb-4">Stratejik Model: "The Digital Vogue"</h3>
+                            <p class="text-gray-300 leading-relaxed text-sm md:text-base max-w-3xl">
+                                Neden bir "Dizin" (Directory) değil de bir "Yayıncı" (Publisher) gibi davranmalıyız? Ceremonics'in motivasyonu, kaotik bir pazar yerinde <strong>küratör</strong> rolünü üstlenmektir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8 border-t border-white/10 pt-8">
+                        <div>
+                            <h4 class="text-[#D4AF37] font-bold mb-3 flex items-center gap-2 text-sm md:text-base"><i class="fa-solid fa-filter"></i> Kürasyon Gücü</h4>
+                            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
+                                Düğün.com "herkesi" listeler; Vogue "en iyileri" seçer. Ceremonics, kullanıcıyı seçeneklere boğmak yerine, editörün süzgecinden geçmiş, <strong>güvenilir ve rafine</strong> seçenekler sunarak karar verme yorgunluğunu ortadan kaldırır.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[#D4AF37] font-bold mb-3 flex items-center gap-2 text-sm md:text-base"><i class="fa-solid fa-feather"></i> Hikaye & İlham</h4>
+                            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
+                                İnsanlar hizmet satın almadan önce hayal satın alırlar. Sadece "masa sandalye kiralama" demek yerine, "Bohem bir akşam yemeği estetiği" sunmak, hizmetin <strong>algılanan değerini</strong> artırır.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[#D4AF37] font-bold mb-3 flex items-center gap-2 text-sm md:text-base"><i class="fa-solid fa-magnifying-glass-chart"></i> İçerik Odaklı SEO</h4>
+                            <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
+                                Google ve Yapay Zeka (GEO), "bilgi veren" siteleri sever. Sadece hizmet listelemek yerine trend raporları yayınlamak, markayı <strong>topikal otorite</strong> yapar ve organik trafik sağlar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Competitor Breakdown -->
+            <div class="reveal border-t border-stone-100 pt-12">
+                <h3 class="serif-font text-xl md:text-2xl text-[#0a0a0a] mb-8 text-center">Global Benchmark & Rekabet Haritası</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Global Giants -->
+                    <div class="bg-[#FDFBF7] p-6 md:p-8 rounded-lg border border-stone-200 hover:border-[#D4AF37] transition-all">
+                        <h4 class="font-bold text-[#B87333] mb-6 flex items-center gap-3 text-base md:text-lg border-b border-stone-200 pb-2">
+                            <i class="fa-solid fa-earth-americas text-xl"></i> Global Devler (ABD)
+                        </h4>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">TK</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">The Knot</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">Dünyanın en büyük düğün platformu. Her şeyi kapsayan devasa bir ekosistem.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">WW</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">WeddingWire</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">Özellikle kullanıcı yorumları ve güven puanlamasında lider.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">Z</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">Zola</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">Modern arayüzü ve ücretsiz web sitesi kurma araçlarıyla Y kuşağının favorisi.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- European Leaders -->
+                    <div class="bg-[#FDFBF7] p-6 md:p-8 rounded-lg border border-stone-200 hover:border-[#B87333] transition-all">
+                        <h4 class="font-bold text-[#B87333] mb-6 flex items-center gap-3 text-base md:text-lg border-b border-stone-200 pb-2">
+                            <i class="fa-solid fa-earth-europe text-xl"></i> Avrupa'nın Popüler Siteleri
+                        </h4>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">H</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">Hitched (UK)</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">Birleşik Krallık'ın 1 numaralı sitesi.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">B</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">Bodas.net (İspanya)</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">İspanya ve Latin Amerika'nın en büyük platformu.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-[#0a0a0a] font-bold text-xs shadow-sm flex-shrink-0">M</div>
+                                <div>
+                                    <strong class="text-stone-800 block text-sm mb-1">Mariages.net</strong>
+                                    <p class="text-xs text-stone-500 leading-relaxed">Fransa ve İtalya'nın en popüler düğün planlama rehberleri.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-white border-l-4 border-[#D4AF37] text-xs md:text-sm text-stone-600 shadow-sm">
+                    <p><strong>Stratejik Not:</strong> Bu platformların tamamı "Pazar Yeri" modelini benimser ve Düğün.com'un globaldeki karşılıklarıdır. Ceremonics ise bu kalabalıkta kaybolmak yerine, <strong>Vogue modeliyle</strong> farklılaşarak "seçkin" bir kitleye hitap edecektir.</p>
+                </div>
+            </div>
         </div>
-        <div class="timeline-deliverables">
-         <div class="timeline-deliverable-title">
-          Çıktılar
-         </div>
-         <ul class="timeline-deliverable-list">
-          <li>Google Workspace Enterprise Setup</li>
-          <li>Domain DNS Konfigürasyonu (SPF, DKIM, DMARC)</li>
-          <li>Email Migration &amp; Backup Sistemi</li>
-          <li>Kullanıcı Hesapları &amp; Yetkilendirme</li>
-          <li>Güvenlik Protokolleri &amp; 2FA Aktivasyonu</li>
-         </ul>
+    </section>
+
+    <!-- 4. SWOT SECTION -->
+    <section id="swot" class="py-16 md:py-24 bg-[#0a0a0a] text-white reveal-section relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 reveal">
+                <div>
+                    <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase mb-2 block">Stratejik Analiz</span>
+                    <h2 class="serif-font text-3xl md:text-4xl text-white">SWOT Matrisi</h2>
+                </div>
+                <p class="text-gray-400 max-w-md text-sm mt-4 md:mt-0">
+                    Neden "News/Service Hybrid" modeli seçilmeli? İşte stratejik gerekçeler.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- S -->
+                <div class="bg-white/5 p-6 md:p-8 border-t-4 border-[#D4AF37] hover:bg-white/10 transition-colors reveal delay-100">
+                    <div class="text-4xl md:text-5xl font-serif font-bold text-[#D4AF37] opacity-20 mb-4">S</div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">Güçlü Yönler <i class="fa-solid fa-shield-halved text-[#D4AF37] text-xs"></i></h3>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Hibrit Model</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> GEO Altyapısı</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Premium Tasarım</li>
+                    </ul>
+                </div>
+                <!-- W -->
+                <div class="bg-white/5 p-6 md:p-8 border-t-4 border-stone-500 hover:bg-white/10 transition-colors reveal delay-200">
+                    <div class="text-4xl md:text-5xl font-serif font-bold text-stone-500 opacity-20 mb-4">W</div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">Zayıf Yönler <i class="fa-solid fa-link-slash text-stone-500 text-xs"></i></h3>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fa-solid fa-minus text-stone-500 mr-2"></i> Yeni Domain</li>
+                        <li><i class="fa-solid fa-minus text-stone-500 mr-2"></i> İçerik Yükü</li>
+                    </ul>
+                </div>
+                <!-- O -->
+                <div class="bg-white/5 p-6 md:p-8 border-t-4 border-[#B87333] hover:bg-white/10 transition-colors reveal delay-300">
+                    <div class="text-4xl md:text-5xl font-serif font-bold text-[#B87333] opacity-20 mb-4">O</div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">Fırsatlar <i class="fa-solid fa-lightbulb text-[#B87333] text-xs"></i></h3>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fa-solid fa-arrow-trend-up text-[#B87333] mr-2"></i> Yapay Zeka (GEO)</li>
+                        <li><i class="fa-solid fa-arrow-trend-up text-[#B87333] mr-2"></i> Lüks Açığı</li>
+                    </ul>
+                </div>
+                <!-- T -->
+                <div class="bg-white/5 p-6 md:p-8 border-t-4 border-red-800 hover:bg-white/10 transition-colors reveal delay-400">
+                    <div class="text-4xl md:text-5xl font-serif font-bold text-red-800 opacity-20 mb-4">T</div>
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">Tehditler <i class="fa-solid fa-triangle-exclamation text-red-800 text-xs"></i></h3>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fa-solid fa-xmark text-red-800 mr-2"></i> Taklit Edilme</li>
+                        <li><i class="fa-solid fa-xmark text-red-800 mr-2"></i> Ekonomi</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="timeline-stats">
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           15
-          </div>
-          <div class="timeline-stat-label">
-           Kullanıcı
-          </div>
-         </div>
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           99.9%
-          </div>
-          <div class="timeline-stat-label">
-           Uptime
-          </div>
-         </div>
+    </section>
+
+    <!-- 5. GEO TEKNOLOJI SECTION -->
+    <section id="geo" class="py-16 md:py-24 bg-white reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Centered Layout for Text Content -->
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2 block flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-microchip"></i> Teknoloji Vizyonu
+                </span>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a] mb-6">GEO: Geleceğin Arama Motoru Optimizasyonu</h2>
+                <p class="text-stone-600 mb-8 leading-relaxed text-sm md:text-base">
+                    Geleneksel SEO anahtar kelimeye, GEO ise <strong>anlama ve cevaba</strong> odaklanır. Ceremonics, yapay zeka motorlarını besleyerek önerilen marka olmayı hedefler.
+                </p>
+            </div>
+            
+            <!-- Steps (Centered) -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto reveal">
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-100 text-center hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded bg-white flex items-center justify-center text-[#D4AF37] mx-auto mb-4 shadow-sm"><i class="fa-solid fa-code"></i></div>
+                    <h4 class="font-bold text-lg mb-2">1. Yapısal Veri (Schema)</h4>
+                    <p class="text-sm text-stone-500">Web sitenizdeki içerikler, robotların anlayacağı "makine diline" (JSON-LD) çevrilir.</p>
+                </div>
+
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-100 text-center hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded bg-white flex items-center justify-center text-[#B87333] mx-auto mb-4 shadow-sm"><i class="fa-solid fa-project-diagram"></i></div>
+                    <h4 class="font-bold text-lg mb-2">2. Bilgi Grafiği</h4>
+                    <p class="text-sm text-stone-500">"Lüks Düğün" aramaları ile "Ceremonics" markası arasında anlamsal bağlar kurulur.</p>
+                </div>
+
+                <div class="bg-[#0a0a0a] p-6 rounded-lg border border-stone-900 text-center text-white shadow-xl transform md:scale-105">
+                    <div class="w-12 h-12 rounded bg-white/10 flex items-center justify-center text-white mx-auto mb-4"><i class="fa-solid fa-brain"></i></div>
+                    <h4 class="font-bold text-lg mb-2">3. AI Önerisi</h4>
+                    <p class="text-sm text-gray-400">ChatGPT ve Gemini, kullanıcı tavsiye istediğinde markanızı "Otorite" olarak sunar.</p>
+                </div>
+            </div>
         </div>
-       </div>
-      </div>
-      <div class="timeline-item">
-       <div class="timeline-node">
-        <div class="timeline-node-number">
-         02
+    </section>
+
+    <!-- SAMPLE BLOG POST DEMO -->
+    <section id="blog-demo" class="py-16 md:py-24 bg-[#FDFBF7] reveal-section border-t border-stone-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2">İçerik Kalitesi (Demo)</span>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a]">Örnek Blog: GEO & SEO Uyumlu Yapı</h2>
+                <p class="text-stone-500 mt-4 text-sm italic">
+                    Paket kapsamında üretilecek içeriklerin yapay zeka (GEO) uyumlu kurgusuna bir örnek.
+                </p>
+            </div>
+
+            <!-- Blog Post Container -->
+            <article class="bg-white p-6 md:p-12 shadow-xl rounded-lg border border-stone-100 reveal">
+                <!-- Blog Header -->
+                <header class="mb-8 border-b border-stone-100 pb-8 text-center">
+                    <span class="inline-block px-3 py-1 bg-[#FDFBF7] text-[#B87333] text-[10px] font-bold uppercase tracking-widest rounded mb-4">Trend Raporu</span>
+                    <h1 class="serif-font text-2xl md:text-4xl text-[#0a0a0a] mb-4 leading-tight">2025'in En Çarpıcı 10 Küresel Düğün Organizasyon Trendi</h1>
+                    <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-stone-400">
+                        <span><i class="fa-regular fa-calendar mr-1"></i> 24 Aralık 2025</span>
+                        <span><i class="fa-regular fa-clock mr-1"></i> 6 Dakika Okuma</span>
+                        <span><i class="fa-solid fa-robot mr-1"></i> GEO Optimized</span>
+                    </div>
+                </header>
+
+                <!-- Blog Body (Sample Snippet) -->
+                <div class="prose max-w-none text-stone-600 space-y-8">
+                    <p class="text-base md:text-lg leading-relaxed font-light">
+                        2025 düğün sezonu, "gösterişli sadelik" (loud luxury) kavramının yükselişine sahne oluyor. Çiftler artık sadece bir etkinlik değil, misafirlerine sürdürülebilir ve teknolojik bir <strong>deneyim</strong> sunmak istiyor. İşte dünyanın dört bir yanından derlediğimiz, yapay zeka analizlerine göre 2025'in en çok aranan 10 trendi.
+                    </p>
+
+                    <!-- Trend 1 -->
+                    <div class="bg-[#FDFBF7] p-6 rounded-lg border-l-4 border-[#D4AF37]">
+                        <h2 class="serif-font text-xl md:text-2xl text-[#0a0a0a] mb-3 flex items-center gap-2">
+                            <span class="text-[#D4AF37]">01.</span> Sürdürülebilir "Eco-Chic" Lüks
+                        </h2>
+                        <!-- Image Placeholder -->
+                        <div class="w-full h-48 bg-stone-200 rounded mb-4 flex flex-col items-center justify-center text-stone-400 relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700" style="background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0202128?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                            <i class="fa-solid fa-leaf text-3xl mb-2 relative z-10 text-stone-600"></i>
+                            <span class="text-xs uppercase tracking-widest relative z-10 font-bold text-stone-600">Görsel: Sıfır Atık Sofra Düzeni</span>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            Plastik kullanımının sıfırlandığı, dekorların geri dönüştürülebilir malzemelerden seçildiği, ancak lüks algısından ödün verilmeyen konseptler. <em>Anahtar Kelime: Sustainable Wedding Luxury.</em>
+                        </p>
+                    </div>
+
+                    <!-- Trend 2 -->
+                    <div class="bg-[#FDFBF7] p-6 rounded-lg border-l-4 border-[#B87333]">
+                        <h2 class="serif-font text-xl md:text-2xl text-[#0a0a0a] mb-3 flex items-center gap-2">
+                            <span class="text-[#B87333]">02.</span> Mikro-Lüks Deneyimler
+                        </h2>
+                         <!-- Image Placeholder -->
+                         <div class="w-full h-48 bg-stone-200 rounded mb-4 flex flex-col items-center justify-center text-stone-400 relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:scale-105 transition-transform duration-700" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                            <i class="fa-solid fa-champagne-glasses text-3xl mb-2 relative z-10 text-stone-600"></i>
+                            <span class="text-xs uppercase tracking-widest relative z-10 font-bold text-stone-600">Görsel: 30 Kişilik Özel Davet Masası</span>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            Davetli sayısının 50'nin altına düştüğü ancak kişi başı bütçenin arttığı "butik" organizasyonlar. Kalabalık yerine kalite odaklı gastronomi deneyimleri.
+                        </p>
+                    </div>
+
+                     <!-- List continues... -->
+                     <div class="pl-4 border-l-2 border-stone-200 space-y-4 py-4">
+                        <h3 class="font-bold text-[#0a0a0a]">Listenin Devamı (Özet):</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm">
+                            <li><strong>03. Celestial (Göksel) Temalar:</strong> Uzay çağı estetiği ve astroloji detayları.</li>
+                            <li><strong>04. Drone Işık Şovları:</strong> Havai fişek yerine sessiz ve teknolojik gösteriler.</li>
+                            <li><strong>05. Hafta Sonu Festivalleri:</strong> Tek gece değil, 3 güne yayılan "Wedding Weekend"ler.</li>
+                            <li><strong>06. Vintage Revival (70'ler):</strong> Disko topları, kadife koltuklar ve retro renkler.</li>
+                            <li><strong>07. Monokromatik Paletler:</strong> Tek rengin (örneğin tamamen Bordo) 50 tonu.</li>
+                            <li><strong>08. Gizli Cennetler (Destination):</strong> Popüler şehirler yerine keşfedilmemiş köyler.</li>
+                            <li><strong>09. Analog Fotoğrafçılık:</strong> Dijitalin kusursuzluğuna inat, "film grain" estetiği.</li>
+                            <li><strong>10. Kişiselleştirilmiş Kokteyl Barları:</strong> Çiftin hikayesini anlatan özel mixoloji.</li>
+                        </ul>
+                     </div>
+
+                    <!-- GEO (AI) Friendly FAQ Section -->
+                    <div class="mt-8 bg-stone-50 p-6 rounded-lg border border-stone-200">
+                        <h3 class="font-bold text-[#0a0a0a] mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-robot text-[#B87333]"></i> GEO Sıkça Sorulan Sorular (AI Snippet Alanı)
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-sm font-bold text-stone-800">2025 düğünlerinde hangi renkler moda?</h4>
+                                <p class="text-xs text-stone-600 mt-1">2025 yılında toprak tonları (Terracotta), adaçayı yeşili (Sage Green) ve derin bordo (Burgundy) en çok tercih edilen renk paletleridir.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-stone-800">Mikro düğün nedir?</h4>
+                                <p class="text-xs text-stone-600 mt-1">Mikro düğün, genellikle 50 kişiden az davetlinin katıldığı, bütçenin detaylara ve misafir deneyimine harcandığı, samimi ve lüks organizasyon türüdür.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Blog Footer -->
+                <div class="mt-8 pt-6 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center text-xs text-stone-400 gap-4">
+                    <span>Etiketler: #2025Wedding #LuxuryEvents #Ceremonics</span>
+                    <span class="flex items-center gap-2">Paylaş: <i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-linkedin"></i></span>
+                </div>
+            </article>
         </div>
-        <div class="timeline-node-label">
-         Sprint
+    </section>
+
+    <!-- 6. TEKLIF & ROADMAP SECTION -->
+    <section id="teklif" class="py-16 md:py-24 bg-[#FDFBF7] border-t border-stone-200 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2">Yatırım & Süreç</span>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a]">Fiyat Teklifi ve Paketler</h2>
+                <p class="text-stone-500 mt-4 max-w-2xl mx-auto text-sm">Markanızın dijital yolculuğu için ihtiyaç duyduğunuz altyapı ve içerik çözümleri.</p>
+            </div>
+
+            <!-- Pricing Cards Container -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+                
+                <!-- PACK 1: LAUNCH -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 hover:border-[#D4AF37] transition-all reveal delay-100 flex flex-col relative h-full">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-stone-200"></div>
+                    <h3 class="serif-font text-xl md:text-2xl text-[#0a0a0a] mb-2">Global Vitrin</h3>
+                    <p class="text-xs text-stone-500 uppercase tracking-widest mb-6">Paket 1 (Başlangıç)</p>
+                    <div class="text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-2 font-serif">$1.800 <span class="text-sm font-normal text-stone-500">+ KDV</span></div>
+                    <p class="text-xs text-stone-400 mb-6">Teslim: 15 İş Günü</p>
+                    
+                    <div class="space-y-4 mb-8 flex-1">
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>Wordpress Web Tasarımı:</strong> İngilizce & Türkçe altyapılı, mobil uyumlu modern arayüz.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>Kurumsal Sayfalar:</strong> Hakkımızda, İletişim, Basın vb. temel sayfaların tasarımı.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>10 Adet Makale:</strong> Sektörel başlangıç blog içerikleri (Haber/Trend).</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>Meta & LinkedIn:</strong> Business Suite ve şirket sayfası kurulumları.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>SEO Optimizasyonu:</strong> Google standartlarında teknik kurulum (TR/EN).</span>
+                        </div>
+                    </div>
+
+                     <!-- Process & Payment Detail -->
+                     <div class="mt-6 pt-6 border-t border-dashed border-stone-300 bg-stone-50/50 p-4 rounded text-left">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-3 text-stone-500 flex items-center gap-2"><i class="fa-solid fa-calendar-days"></i> Çalışma Takvimi</h4>
+                        <ul class="text-xs space-y-2 text-stone-600 mb-4 pl-1">
+                             <li><strong>• Hafta 1:</strong> Kurulum & Tasarım Onayı</li>
+                             <li><strong>• Hafta 2:</strong> İçerik Girişi & SEO Ayarları</li>
+                             <li><strong>• Hafta 3:</strong> Final Kontrol & Teslim</li>
+                        </ul>
+                        <div class="border-t border-stone-200 pt-3">
+                            <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-stone-500 flex items-center gap-2"><i class="fa-solid fa-credit-card"></i> Ödeme Planı</h4>
+                            <p class="text-xs text-stone-600">
+                                <strong>%50 Peşin</strong> (İş Başlangıcı)<br>
+                                <strong>%50 Teslimatta</strong> (Versiyon 1.0 Sunumu)
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/905079448462?text=Merhaba%20Semanur%20Han%C4%B1m%2C%20Ceremonics%20projesi%20i%C3%A7in%20'Paket%201%3A%20Global%20Vitrin%20(%241.800%20%2B%20KDV)'%20hakk%C4%B1nda%20detayl%C4%B1%20bilgi%20almak%20ve%20%C3%A7al%C4%B1%C5%9Fmaya%20ba%C5%9Flamak%20istiyorum." target="_blank" class="block w-full text-center py-3 border border-[#0a0a0a] text-[#0a0a0a] text-xs uppercase tracking-widest font-bold hover:bg-[#0a0a0a] hover:text-white transition-colors mt-6">Seçiniz</a>
+                </div>
+
+                <!-- PACK 2: AUTHORITY (Recommended) -->
+                <div class="bg-[#0a0a0a] p-6 md:p-8 rounded-xl shadow-2xl border border-[#0a0a0a] text-white relative transform md:-translate-y-4 z-10 reveal delay-200 flex flex-col h-full">
+                    <div class="absolute top-0 right-0 bg-[#D4AF37] text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Önerilen</div>
+                    <h3 class="serif-font text-xl md:text-2xl text-[#D4AF37] mb-2">AI & Ticaret</h3>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-6">Paket 2 (Growth)</p>
+                    <div class="text-3xl md:text-4xl font-bold text-white mb-2 font-serif">$2.500 <span class="text-sm font-normal text-gray-500">+ KDV</span></div>
+                    <p class="text-xs text-gray-400 mb-6">Teslim: 30 İş Günü</p>
+
+                    <div class="space-y-4 mb-8 flex-1">
+                         <div class="flex items-start gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-circle-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>Paket 1 Dahil:</strong> Tüm başlangıç özellikleri kapsanır.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-circle-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>WooCommerce Altyapısı:</strong> Hizmet veya ürün satışı için geleceğe hazır, genişletilebilir e-ticaret sistemi.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-circle-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>GEO Entegrasyonu:</strong> Yapay zeka motorlarının (ChatGPT, Gemini) sitenizi okuyabilmesi için özel kodlama.</span>
+                        </div>
+                         <div class="flex items-start gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-circle-check text-[#D4AF37] mt-1 flex-shrink-0"></i>
+                            <span><strong>Gelişmiş Schema:</strong> Arama motorları için zengin veri işaretleme.</span>
+                        </div>
+                    </div>
+
+                    <!-- Process & Payment Detail -->
+                    <div class="mt-6 pt-6 border-t border-dashed border-gray-700 bg-white/5 p-4 rounded text-left">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-3 text-gray-400 flex items-center gap-2"><i class="fa-solid fa-calendar-days"></i> Çalışma Takvimi</h4>
+                        <ul class="text-xs space-y-2 text-gray-300 mb-4 pl-1">
+                             <li><strong>• Hafta 1-2:</strong> E-Ticaret Altyapısı & Tasarım</li>
+                             <li><strong>• Hafta 3-4:</strong> GEO & Yapay Zeka Entegrasyonu</li>
+                             <li><strong>• Hafta 5-6:</strong> Veri İşleme, Test & V1.0 Teslim</li>
+                        </ul>
+                        <div class="border-t border-gray-700 pt-3">
+                            <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-gray-400 flex items-center gap-2"><i class="fa-solid fa-credit-card"></i> Ödeme Planı</h4>
+                            <p class="text-xs text-gray-300">
+                                <strong>%50 Peşin</strong> (İş Başlangıcı)<br>
+                                <strong>%50 Teslimatta</strong> (Versiyon 1.0 Sunumu)
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/905079448462?text=Merhaba%20Semanur%20Han%C4%B1m%2C%20Ceremonics%20projesi%20i%C3%A7in%20'Paket%202%3A%20AI%20%26%20Ticaret%20(%242.500%20%2B%20KDV)'%20hakk%C4%B1nda%20detayl%C4%B1%20bilgi%20almak%20ve%20%C3%A7al%C4%B1%C5%9Fmaya%20ba%C5%9Flamak%20istiyorum." target="_blank" class="block w-full text-center py-3 bg-[#B87333] text-white text-xs uppercase tracking-widest font-bold hover:bg-[#a0622a] transition-colors shadow-lg mt-6">Hemen Başla</a>
+                </div>
+
+                <!-- ADD-ON: CONTENT -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200 hover:border-[#B87333] transition-all reveal delay-300 flex flex-col relative h-full">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-[#B87333]"></div>
+                    <h3 class="serif-font text-xl md:text-2xl text-[#0a0a0a] mb-2">İçerik Fabrikası</h3>
+                    <p class="text-xs text-stone-500 uppercase tracking-widest mb-6">Ekstra Hizmet (Add-on)</p>
+                    <div class="text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-2 font-serif">35.000 TL <span class="text-sm font-normal text-stone-500">+ KDV</span></div>
+                    <p class="text-xs text-stone-400 mb-6">Paket 2 ile alınması önerilir</p>
+                    
+                    <div class="space-y-4 mb-8 flex-1">
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-pen-nib text-[#B87333] mt-1 flex-shrink-0"></i>
+                            <span><strong>50 Adet Makale:</strong> Sektörel otorite kurmak için dev içerik arşivi.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-pen-nib text-[#B87333] mt-1 flex-shrink-0"></i>
+                            <span><strong>GEO & SEO Uyumlu:</strong> Hem Google hem yapay zeka için optimize edilmiş dil.</span>
+                        </div>
+                        <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-pen-nib text-[#B87333] mt-1 flex-shrink-0"></i>
+                            <span><strong>Schema İşlenmiş:</strong> Veri yapıları kodlanmış, makine tarafından %100 anlaşılır.</span>
+                        </div>
+                         <div class="flex items-start gap-3 text-sm text-stone-600">
+                            <i class="fa-solid fa-pen-nib text-[#B87333] mt-1 flex-shrink-0"></i>
+                            <span><strong>Kapsamlı:</strong> Her biri 700-1000 kelime arası derinlemesine rehberler.</span>
+                        </div>
+                    </div>
+
+                    <!-- Process & Payment Detail -->
+                     <div class="mt-6 pt-6 border-t border-dashed border-stone-300 bg-stone-50/50 p-4 rounded text-left">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-3 text-stone-500 flex items-center gap-2"><i class="fa-solid fa-clock"></i> Süreç</h4>
+                        <ul class="text-xs space-y-2 text-stone-600 mb-4 pl-1">
+                             <li><strong>• Zamanlama:</strong> Ana paket süreciyle eş zamanlı veya +1 hafta ek süre ile teslim edilir.</li>
+                        </ul>
+                        <div class="border-t border-stone-200 pt-3">
+                            <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-stone-500 flex items-center gap-2"><i class="fa-solid fa-credit-card"></i> Ödeme Planı</h4>
+                            <p class="text-xs text-stone-600">
+                                <strong>%50 Peşin</strong> (Sipariş Anında)<br>
+                                <strong>%50 Teslimatta</strong> (İçerikler Yüklendiğinde)
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/905079448462?text=Merhaba%20Semanur%20Han%C4%B1m%2C%20Ceremonics%20projesi%20i%C3%A7in%20'Ekstra%20Hizmet%3A%20%C4%B0%C3%A7erik%20Fabrikas%C4%B1%20(35.000%20TL%20%2B%20KDV)'%20hakk%C4%B1nda%20detayl%C4%B1%20bilgi%20almak%20ve%20eklemek%20istiyorum." target="_blank" class="block w-full text-center py-3 border border-[#B87333] text-[#B87333] text-xs uppercase tracking-widest font-bold hover:bg-[#B87333] hover:text-white transition-colors mt-6">Pakete Ekle</a>
+                </div>
+
+            </div>
+            
+            <!-- Disclaimer -->
+            <div class="max-w-4xl mx-auto mt-8 text-center reveal">
+                <p class="text-xs text-stone-400 italic">
+                    * Hosting, Domain (Alan adı) ve 3. parti üyelik ücretleri hizmet paketlerine dahil değildir. Müşteri tarafından karşılanır.
+                </p>
+            </div>
         </div>
-       </div>
-       <div class="timeline-connector"></div>
-       <div class="timeline-card">
-        <div class="timeline-week">
-         Hafta 3-4
+    </section>
+
+    <!-- NEW SECTION: WHY WORK WITH ME -->
+    <section id="neden-ben" class="py-16 md:py-24 bg-[#FDFBF7] border-t border-stone-200 reveal-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-[#B87333] font-bold text-sm tracking-widest uppercase mb-2">Profesyonel Fark</span>
+                <h2 class="serif-font text-3xl md:text-4xl text-[#0a0a0a]">Neden Semanur Ayyıldız?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <!-- Reason 1 -->
+                <div class="p-6 md:p-8 bg-white border border-stone-100 rounded-lg shadow-sm hover:shadow-md transition-shadow reveal delay-100">
+                    <div class="w-16 h-16 rounded-full bg-stone-50 flex items-center justify-center text-3xl text-[#D4AF37] mx-auto mb-6">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="serif-font text-xl text-[#0a0a0a] mb-3">Bütünleşik (Fullstack) Uzmanlık</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Tasarımcıyı, yazılımcıyı ve stratejisti ayrı ayrı yönetmek zorunda değilsiniz. Markanızın görsel kimliğinden teknik SEO altyapısına kadar tüm süreci <strong>tek elden ve bütünsel</strong> bir vizyonla yönetiyorum.
+                    </p>
+                </div>
+                
+                <!-- Reason 2 -->
+                <div class="p-6 md:p-8 bg-white border border-stone-100 rounded-lg shadow-sm hover:shadow-md transition-shadow reveal delay-200">
+                    <div class="w-16 h-16 rounded-full bg-stone-50 flex items-center justify-center text-3xl text-[#B87333] mx-auto mb-6">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="serif-font text-xl text-[#0a0a0a] mb-3">Butik & Şeffaf Süreç</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Büyük ajansların karmaşık hiyerarşisi ve yavaşlığı yok. Sizinle birebir iletişim kuran, projenizi sahiplenen ve <strong>haftalık ilerleme raporlarıyla</strong> süreci şeffaf yöneten butik bir iş ortağıyım.
+                    </p>
+                </div>
+                
+                <!-- Reason 3 -->
+                <div class="p-6 md:p-8 bg-white border border-stone-100 rounded-lg shadow-sm hover:shadow-md transition-shadow reveal delay-300">
+                    <div class="w-16 h-16 rounded-full bg-stone-50 flex items-center justify-center text-3xl text-[#0a0a0a] mx-auto mb-6">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="serif-font text-xl text-[#0a0a0a] mb-3">Gelecek Odaklı Vizyon</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Sadece bugünün web standartlarını değil, yarının teknolojisi olan <strong>Yapay Zeka (GEO)</strong> ve Dijital Otorite kavramlarını projenize entegre ederek rakiplerinizin önüne geçmenizi sağlıyorum.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="timeline-title">
-         Tasarım &amp; İçerik
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-stone-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="serif-font text-2xl font-bold tracking-widest text-[#0a0a0a] mb-4">CEREMONICS</h2>
+            <p class="text-stone-500 text-sm mb-8">Visual Communication & Digital Transformation Proposal</p>
+            <div class="flex items-center justify-center space-x-2 text-xs text-stone-400">
+                <span>Hazırlayan:</span>
+                <span class="font-bold text-stone-600">Semanur Ayyıldız</span>
+                <span>•</span>
+                <span>2025</span>
+            </div>
         </div>
-        <div class="timeline-description">
-         Modern web sitesi tasarımı, marka kimliği güncellemesi ve SEO stratejisi hayata geçiriliyor. İçerik üretimi ve optimize edilmesi tamamlanıyor.
-        </div>
-        <div class="timeline-deliverables">
-         <div class="timeline-deliverable-title">
-          Çıktılar
-         </div>
-         <ul class="timeline-deliverable-list">
-          <li>Responsive Web Sitesi UI/UX Tasarımı</li>
-          <li>Marka Kimlik Rehberi (Brand Guidelines)</li>
-          <li>HTML E-posta İmza Şablonları</li>
-          <li>SEO Optimized İçerik Stratejisi</li>
-          <li>Ürün Katalogu &amp; Fotoğraf Düzenleme</li>
-         </ul>
-        </div>
-        <div class="timeline-stats">
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           92%
-          </div>
-          <div class="timeline-stat-label">
-           SEO Skor
-          </div>
-         </div>
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           &lt;2s
-          </div>
-          <div class="timeline-stat-label">
-           Yüklenme
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="timeline-item">
-       <div class="timeline-node">
-        <div class="timeline-node-number">
-         03
-        </div>
-        <div class="timeline-node-label">
-         Sprint
-        </div>
-       </div>
-       <div class="timeline-connector"></div>
-       <div class="timeline-card">
-        <div class="timeline-week">
-         Hafta 5-6
-        </div>
-        <div class="timeline-title">
-         Test &amp; Go-Live
-        </div>
-        <div class="timeline-description">
-         Kapsamlı test süreçleri, performans optimizasyonu ve canlı yayına geçiş. Monitoring sistemleri kurularak sürekli iyileştirme başlatılıyor.
-        </div>
-        <div class="timeline-deliverables">
-         <div class="timeline-deliverable-title">
-          Çıktılar
-         </div>
-         <ul class="timeline-deliverable-list">
-          <li>Cross-Browser &amp; Device Testing</li>
-          <li>Performance Optimization (Core Web Vitals)</li>
-          <li>Google Analytics &amp; Search Console Setup</li>
-          <li>SSL/TLS Güvenlik Sertifikaları</li>
-          <li>Canlı Yayın &amp; Post-Launch Monitoring</li>
-         </ul>
-        </div>
-        <div class="timeline-stats">
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           100%
-          </div>
-          <div class="timeline-stat-label">
-           Test Coverage
-          </div>
-         </div>
-         <div class="timeline-stat">
-          <div class="timeline-stat-value">
-           A+
-          </div>
-          <div class="timeline-stat-label">
-           Security
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Key Features -->
-   <section class="section">
-    <div class="section-header">
-     <h2 class="section-title">Proje <span>Çıktıları</span></h2>
-     <p class="section-subtitle">Deliverables &amp; Key Results</p>
-    </div>
-    <div class="features-grid">
-     <div class="feature-card">
-      <div class="feature-icon">
-       ■
-      </div>
-      <div class="feature-title">
-       Sıfır Spam Riski
-      </div>
-      <div class="feature-description">
-       Google Workspace enterprise düzeyde e-posta güvenliği, AI destekli tehdit koruması ve spam filtreleme
-      </div>
-     </div>
-     <div class="feature-card">
-      <div class="feature-icon">
-       ▲
-      </div>
-      <div class="feature-title">
-       Kurumsal Hafıza
-      </div>
-      <div class="feature-description">
-       Tüm iletişim ve dökümanların merkezi arşivlenmesi, otomatik yedekleme ve compliance desteği
-      </div>
-     </div>
-     <div class="feature-card">
-      <div class="feature-icon">
-       ●
-      </div>
-      <div class="feature-title">
-       Yüksek Dönüşüm
-      </div>
-      <div class="feature-description">
-       Optimize edilmiş UX ile artan teklif oranları, hızlı yüklenme ve mobile-first yaklaşım
-      </div>
-     </div>
-    </div>
-   </section><!-- Leadership -->
-   <section class="leadership">
-    <div class="section-header">
-     <h2 class="section-title">Proje Liderliği &amp; <span>Güven Protokolü</span></h2>
-     <p class="section-subtitle">End-to-End Ownership &amp; Independence</p>
-    </div>
-    <div class="leadership-grid">
-     <div class="leadership-card">
-      <div class="leadership-number">
-       01
-      </div>
-      <div class="leadership-title">
-       Bütüncül Uzmanlık
-      </div>
-      <div class="leadership-text">
-       Sadece bir web sitesi değil, yaşayan bir dijital ekosistem. Tasarım, yazılım ve strateji süreçlerini tek elden, entegre şekilde yönetiyorum.
-      </div>
-     </div>
-     <div class="leadership-card">
-      <div class="leadership-number">
-       02
-      </div>
-      <div class="leadership-title">
-       Bağımsız Güvence
-      </div>
-      <div class="leadership-text">
-       Ajans bağımlılığı yaratmıyorum. Domain, hosting ve tüm dijital varlıkların tam mülkiyeti müşteriye ait. Reseller hesapları Vega Trailer adına.
-      </div>
-     </div>
-     <div class="leadership-card">
-      <div class="leadership-number">
-       03
-      </div>
-      <div class="leadership-title">
-       Tam Mülkiyet Garantisi
-      </div>
-      <div class="leadership-text">
-       Sistemi kurar, anahtarı teslim ederim. Hiçbir bağlayıcılık yoktur, tam özgürlük sağlanır. Exit stratejisi baştan planlanır.
-      </div>
-     </div>
-    </div>
-   </section><!-- Footer -->
-   <footer class="footer">
-    <div class="footer-content">
-     <div class="pm-card">
-      <div class="pm-avatar">
-       SA
-      </div>
-      <div class="pm-info">
-       <div class="pm-title">
-        Proje Yöneticisi
-       </div>
-       <div class="pm-name" id="project-manager">
-        Semanur Ayyıldız
-       </div>
-      </div>
-     </div>
-     <div class="footer-text">
-      Visual Communication &amp; Digital Transformation Specialist<br>
-       Vega Trailer 2026 Strategic Transformation Plan
-     </div>
-    </div>
-   </footer>
-  </div>
-  <script>
-        const defaultConfig = {
-            company_name: "VEGA TRAILER",
-            project_title: "Kurumsal Dönüşüm & Marka Entegrasyonu",
-            year: "2026",
-            project_manager: "Semanur Ayyıldız",
-            vision_quote: "40 yıllık endüstriyel mirası, modern teknolojinin diliyle dünyaya anlatmak.",
-            background_color: "#0a0a0a",
-            accent_color: "#c41e3a",
-            text_color: "#e5e5e5",
-            card_background: "#0f0f0f",
-            border_color: "#1a1a1a",
-            font_family: "Inter",
-            font_size: 16
+    </footer>
+
+    <script>
+        // --- Intersection Observer for Scroll Animations ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
 
-        async function onConfigChange(config) {
-            const companyName = config.company_name || defaultConfig.company_name;
-            const projectTitle = config.project_title || defaultConfig.project_title;
-            const year = config.year || defaultConfig.year;
-            const projectManager = config.project_manager || defaultConfig.project_manager;
-            const visionQuote = config.vision_quote || defaultConfig.vision_quote;
-            const backgroundColor = config.background_color || defaultConfig.background_color;
-            const accentColor = config.accent_color || defaultConfig.accent_color;
-            const textColor = config.text_color || defaultConfig.text_color;
-            const customFont = config.font_family || defaultConfig.font_family;
-            const baseSize = config.font_size || defaultConfig.font_size;
-
-            // Update text content
-            document.getElementById('company-name').textContent = companyName;
-            document.getElementById('project-title').textContent = projectTitle;
-            document.getElementById('year').textContent = year;
-            document.getElementById('project-manager').textContent = projectManager;
-            document.getElementById('vision-quote').textContent = `"${visionQuote}"`;
-
-            // Update colors
-            document.body.style.background = backgroundColor;
-            document.body.style.color = textColor;
-
-            // Update fonts
-            const baseFontStack = '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-            const fontFamily = `${customFont}, ${baseFontStack}`;
-            document.body.style.fontFamily = fontFamily;
-
-            const h1Elements = document.querySelectorAll('h1');
-            h1Elements.forEach(h1 => {
-                h1.style.fontSize = `${baseSize * 4.5}px`;
-            });
-
-            const h2Elements = document.querySelectorAll('.section-title');
-            h2Elements.forEach(h2 => {
-                h2.style.fontSize = `${baseSize * 3.5}px`;
-            });
-        }
-
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities: (config) => ({
-                    recolorables: [
-                        {
-                            get: () => config.background_color || defaultConfig.background_color,
-                            set: (value) => {
-                                config.background_color = value;
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.accent_color || defaultConfig.accent_color,
-                            set: (value) => {
-                                config.accent_color = value;
-                                window.elementSdk.setConfig({ accent_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.text_color || defaultConfig.text_color,
-                            set: (value) => {
-                                config.text_color = value;
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    ],
-                    borderables: [],
-                    fontEditable: {
-                        get: () => config.font_family || defaultConfig.font_family,
-                        set: (value) => {
-                            config.font_family = value;
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    },
-                    fontSizeable: {
-                        get: () => config.font_size || defaultConfig.font_size,
-                        set: (value) => {
-                            config.font_size = value;
-                            window.elementSdk.setConfig({ font_size: value });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Specific logic for Pazar section chart
+                    if (entry.target.id === 'pazar' || entry.target.closest('#pazar')) {
+                        if (!window.chartInitialized) {
+                            initMarketChart();
+                            window.chartInitialized = true;
                         }
                     }
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ["company_name", config.company_name || defaultConfig.company_name],
-                    ["project_title", config.project_title || defaultConfig.project_title],
-                    ["year", config.year || defaultConfig.year],
-                    ["project_manager", config.project_manager || defaultConfig.project_manager],
-                    ["vision_quote", config.vision_quote || defaultConfig.vision_quote]
-                ])
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Active Nav Link Highlighter ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Navbar background transparency toggle
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm');
+                navbar.classList.replace('bg-white/95', 'bg-white');
+            } else {
+                navbar.classList.remove('shadow-sm');
+                navbar.classList.replace('bg-white', 'bg-white/95');
+            }
+        });
+
+        // --- Market Chart Logic ---
+        function initMarketChart() {
+            const ctx = document.getElementById('marketChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Editöryal Derinlik', 'Teknolojik Altyapı (GEO)', 'Lüks Algısı', 'Güven/Samimiyet', 'Kullanıcı Deneyimi'],
+                    datasets: [
+                        {
+                            label: 'Ceremonics (Hedef)',
+                            data: [90, 95, 95, 85, 90],
+                            backgroundColor: 'rgba(212, 175, 55, 0.2)', // Gold
+                            borderColor: '#D4AF37',
+                            pointBackgroundColor: '#D4AF37',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Düğün.com',
+                            data: [30, 80, 40, 50, 60],
+                            backgroundColor: 'rgba(150, 150, 150, 0.1)',
+                            borderColor: '#999',
+                            pointBackgroundColor: '#999',
+                            borderWidth: 1,
+                            borderDash: [5, 5]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#eee' },
+                            grid: { color: '#eee' },
+                            pointLabels: { font: { family: "'Playfair Display', serif", size: 12 }, color: '#333' },
+                            ticks: { display: false, max: 100 }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: "'Lato', sans-serif" } } }
+                    }
+                }
             });
         }
+
+        // --- Mobile Menu Toggle ---
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a64721c23f36852',t:'MTc2NDQ0Mzg1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
